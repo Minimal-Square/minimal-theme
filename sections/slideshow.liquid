@@ -1,0 +1,338 @@
+
+
+{% schema %}
+{
+    "name": "Slideshow",
+    "max_blocks": 5,
+    "blocks": [
+        {
+            "type": "slideshow",
+            "name": "Slide",
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "slideshow_image",
+                    "label": "Image",
+                    "info": "2048px width recommended"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "slideshow_image_mobile",
+                    "label": "Image mobile",
+                    "info":  "Optional"
+                },
+                {
+                    "type": "select",
+                    "id": "slideshow_image_position",
+                    "label": "Position",
+                    "default": "center",
+                    "options": [
+                        {
+                            "value": "top",
+                            "label": "Top"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "bottom",
+                            "label": "Bottom"
+                        }
+                    ]
+                },
+                {
+                    "type": "header",
+                    "content": "Text"
+                },
+                {
+                    "type": "text",
+                    "id": "slideshow_heading",
+                    "label": "Heading"
+                },
+                {
+                    "type": "textarea",
+                    "id": "slideshow_subheading",
+                    "label": "Subeading"
+                },
+                {
+                    "type": "color",
+                    "id": "slideshow_text_color",
+                    "label": "Text color",
+                    "default": "#ffffff"
+                },
+                {
+                    "type": "select",
+                    "id": "slideshow_text_position_horizontal",
+                    "label": "Position",
+                    "default": "center",
+                    "options": [
+                        {
+                            "value": "top-left",
+                            "label": "Top Left"
+                        },
+                        {
+                            "value": "top-center",
+                            "label": "Top Center"
+                        },
+                        {
+                            "value": "top-right",
+                            "label": "Top Right"
+                        },
+                        {
+                            "value": "center-left",
+                            "label": "Center Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "center-right",
+                            "label": "Center Right"
+                        },
+                        {
+                            "value": "bottom-left",
+                            "label": "Bottom Left"
+                        },
+                        {
+                            "value": "bottom-center",
+                            "label": "Bottom Center"
+                        },
+                        {
+                            "value": "bottom-right",
+                            "label": "Bottom Right"
+                        }
+                    ]
+                },
+                {
+                    "type": "header",
+                    "content": "Buttons"
+                },
+                {
+                    "type": "text",
+                    "id": "slideshow_button_text",
+                    "label": "Button text",
+                    "default": "Shop now"
+                },
+                {
+                    "type": "url",
+                    "id": "slideshow_button_url",
+                    "label": "Button URL"
+                },
+                {
+                    "type": "select",
+                    "id": "slideshow_button_style",
+                    "label": "Button style",
+                    "default": "slideshow_button_style_primary",
+                    "options": [
+                        {
+                            "value": "slideshow_button_style_primary",
+                            "label": "Primary"
+                        },
+                        {
+                            "value": "slideshow_button_style_secondary",
+                            "label": "Secondary"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "id": "slideshow_second_button_text",
+                    "label": "Second button text",
+                    "default": "View collection"
+                },
+                {
+                    "type": "url",
+                    "id": "slideshow_second_button_url",
+                    "label": "Second button URL"
+                },
+                {
+                    "type": "select",
+                    "id": "slideshow_second_button_style",
+                    "label": "Second button style",
+                    "default": "slideshow_second_button_style_secondary",
+                    "options": [
+                        {
+                            "value": "slideshow_second_button_style_primary",
+                            "label": "Primary"
+                        },
+                        {
+                            "value": "slideshow_second_button_style_secondary",
+                            "label": "Secondary"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Layout"
+        },
+        {
+            "type": "select",
+            "id": "slideshow_width",
+            "label": "Slideshow width",
+            "default": "full-width",
+            "options": [
+                {
+                    "value": "full-width",
+                    "label": "Full width"
+                },
+                {
+                    "value": "content-width",
+                    "label": "Content width"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "slideshow_height",
+            "label": "Slideshow height desktop",
+            "default": "large",
+            "options": [
+                {
+                    "value": "small",
+                    "label": "Small"
+                },
+                {
+                    "value": "medium",
+                    "label": "Medium"
+                },
+                {
+                    "value": "large",
+                    "label": "Large"
+                },
+                {
+                    "value": "fit_screen",
+                    "label": "Fit screen"
+                },
+                {
+                    "value": "adopt_to_first_slide",
+                    "label": "Adopt to first slide"
+                },
+                {
+                    "value": "original_aspect_ratio",
+                    "label": "Original aspect ratio"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "slideshow_height_mobile",
+            "label": "Slideshow height mobile",
+            "default": "large",
+            "options": [
+                {
+                    "value": "small",
+                    "label": "Small"
+                },
+                {
+                    "value": "medium",
+                    "label": "Medium"
+                },
+                {
+                    "value": "large",
+                    "label": "Large"
+                },
+                {
+                    "value": "extra_large",
+                    "label": "Extra large"
+                },
+                {
+                    "value": "fit_screen",
+                    "label": "Fit screen"
+                },
+                {
+                    "value": "adopt_to_first_slide",
+                    "label": "Adopt to first slide"
+                },
+                {
+                    "value": "original_aspect_ratio",
+                    "label": "Original aspect ratio"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "Overlay"
+        },
+        {
+            "type": "checkbox",
+            "id": "slideshow_overlay_enable",
+            "label": "Activate overlay"
+        },
+        {
+            "type": "range",
+            "id": "slideshow_overlay_opacity",
+            "label": "Overlay opacity",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "default": 15,
+            "unit": "%"
+        },
+        {
+            "type": "select",
+            "id": "slideshow_overlay_style",
+            "label": "Overlay style",
+            "default": "solid",
+            "options": [
+                {
+                    "value": "gradient",
+                    "label": "Gradient"
+                },
+                {
+                    "value": "solid",
+                    "label": "Solid"
+                }
+            ]
+        },
+        {
+            "type": "color",
+            "id": "slideshow_overlay_color",
+            "label": "Overlay color",
+            "default": "#222222"
+        },
+        {
+            "type": "header",
+            "content": "Autoplay"
+        },
+        {
+            "type": "checkbox",
+            "id": "slideshow_autoplay",
+            "label": "Activate autoplay"
+        },
+        {
+            "type": "range",
+            "id": "slideshow_autoplay_duration",
+            "label": "Autoplay slide duration",
+            "min": 5,
+            "max": 12,
+            "step": 1,
+            "default": 5,
+            "unit": "sec"
+        }
+    ],
+    "presets": [
+        {
+            "category": "Image",
+            "name":"Slideshow"
+        }
+    ]
+}
+{% endschema %}
