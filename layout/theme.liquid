@@ -9,69 +9,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   {{ content_for_header }} <!-- Header hook for plugins -->
   {{ 'application.css' | asset_url | stylesheet_tag }}
+  {{ 'custom.css' | asset_url | stylesheet_tag }}
+  {{ 'flickity.css' | asset_url | stylesheet_tag }}
   {{ 'application.js' | asset_url | script_tag }} 
+  {{ 'flickity.js' | asset_url | script_tag }} 
+
 </head>
 <body>
-
-  <style>
-    /* COLORS */
-    /* General colors */
-    .clr-general-background { background-color: {{ settings.clr_general_background }}; }
-    .clr-general-headings { color: {{ settings.clr_general_headings }}; }
-    .clr-general-text { color: {{ settings.clr_general_text }}; }
-    .clr-general-light-text { color: {{ settings.clr_general_light_text }}; }
-    .clr-general-links { color: {{ settings.clr_general_links }}; }
-
-    /* Buttons colors */
-    .clr-button-primary-background { background-color: {{ settings.clr_button_primary_background }}; }
-    .clr-button-primary-text { color: {{ settings.clr_button_primary_text }}; }
-    .clr-button-secondary-background { background-color: {{ settings.clr_button_secondary_background }}; }
-    .clr-button-secondary-text { color: {{ settings.clr_button_secondary_text }}; }
-    .clr-button-secondary-border { border-color: {{ settings.clr_button_secondary_border }}; }
-
-    /* Header colors */
-    .clr-header-background { background-color: {{ settings.clr_header_background }}; }
-    .clr-header-text { color: {{ settings.clr_header_text }}; }
-
-    /* Forms colors */
-    .clr-form-background { background-color: {{ settings.clr_form_background }}; }
-    .clr-form-text { color: {{ settings.clr_form_text }}; }
-    .clr-form-border { border-color: {{ settings.clr_form_border }}; }
-
-    /* Product colors */
-    .clr-product-sale-accent { color: {{ settings.clr_product_sale_accent }}; }
-    .clr-product-review-star { color: {{ settings.clr_product_review_star }}; }
-
-    /* Footer colors */
-    .clr-footer-background { background-color: {{ settings.clr_footer_background }}; }
-    .clr-footer-text { color: {{ settings.clr_footer_text }}; }
-
-    /* Site overlays */
-    .clr-overlay { background-color: {{ settings.clr_overlay }}; }
-    .clr-overlay_opacity { opacity: {{ settings.clr_overlay_opacity }}; }
-
-
-    /* TYPOGRAPHY */
-    /* Font Face */
-    {{ settings.font_heading | font_face }}
-    {{ settings.font_heading | font_modify: 'weight', 'bolder' | font_face }}
-    {{ settings.font_heading | font_modify: 'style', 'italic' | font_face }}
-    {{ settings.font_heading | font_modify: 'style', 'italic' | font_modify: 'weight', 'bolder' | font_face }}
-    {{ settings.font_body | font_face }}
-    {{ settings.font_body | font_modify: 'weight', 'bolder' | font_face }}
-    {{ settings.font_body | font_modify: 'style', 'italic' | font_face }}
-    {{ settings.font_body | font_modify: 'style', 'italic' | font_modify: 'weight', 'bolder' | font_face }}
-
-    /* Font sizes */
-    .heading-xl { font-size: {{ settings.base_font_size | times: 3.157 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; }
-    .heading-lg { font-size: {{ settings.base_font_size | times: 2.369 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; }
-    .heading-md { font-size: {{ settings.base_font_size | times: 1.777 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; }
-    .heading-sm { font-size: {{ settings.base_font_size | times: 1.333 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; }
-    .body-md { font-size: {{ settings.base_font_size }}px; font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; }
-    .body-sm { font-size: {{ settings.base_font_size | times: 0.75 }}px; font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; }
-    .body-xs { font-size: {{ settings.base_font_size | times: 0.563 }}px; font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; }
-  </style>
-
   {% section 'header' %}
   <main role="main">
     {{ content_for_layout }}
