@@ -1,0 +1,114 @@
+
+
+{% schema %}
+{
+    "name": "Collection list",
+    "settings": [
+        {
+            "type": "text",
+            "id": "collection_list_heading",
+            "label": "Heading"
+        },
+        {
+            "type": "text",
+            "id": "collection_list_subheading",
+            "label": "Subheading"
+        },
+        {
+            "type": "range",
+            "id": "collection_list_aspect",
+            "label": "Aspect ratio",
+            "unit": ":1",
+            "min": 0.5,
+            "max": 1.5,
+            "step": 0.1,
+            "default": 1
+        },
+        {
+            "type": "range",
+            "id": "collection_list_per_row",
+            "label": "Columns per row",
+            "min": 2,
+            "max": 6,
+            "step": 1,
+            "default": 3
+        },
+        {
+            "type": "range",
+            "id": "collection_list_per_row_mobile",
+            "label": "Columns per row on mobile",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "default": 2
+        },
+        {
+            "type": "select",
+            "id": "collection_list_align",
+            "label": "Align",
+            "options": [
+                {
+                    "value": "top-left",
+                    "label": "Top Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                },
+                {
+                    "value": "bottom-left",
+                    "label": "Bottom Left"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "collection_list_button",
+            "label": "label",
+            "options": [
+                {
+                    "value": "",
+                    "label": "",
+                    "group": ""
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "id": "collection_list_link_text",
+            "label": "Link text",
+            "default": "Shop All"
+        }
+    ],
+    "max_blocks": 6,
+    "blocks": [
+        {
+            "type": "collection_list",
+            "name": "Collection list",
+            "settings": [
+                {
+                    "type": "collection",
+                    "id": "collection_list",
+                    "label": "Collection"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "collection_list_image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "collection_list_custom_title",
+                    "label": "Custom title"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "category": "Collection",
+            "name":"Collection list"
+        }
+    ]
+}
+{% endschema %}
