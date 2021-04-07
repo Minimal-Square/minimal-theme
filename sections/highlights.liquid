@@ -1,35 +1,34 @@
-<div class="py-6" style="background: {{ section.settings.highlight_background_color  }}">
+<div class="py-6 clr-highlights-background">
     <div class="2xl:container mx-auto">
-          
             <div class="{% if section.settings.highlights_layout_mobile != 'highlight-grid' %} main-carousel md:flex {% elsif section.settings.highlights_layout_mobile == 'highlight-grid' %} grid grid-cols-2 gap-4 md:flex md:justify-around {% endif %}" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false, "watchCSS": true, "prevNextButtons": false }'> 
                 {% for block in section.blocks %}
-                    <div class="carousel-cell">
-                        <div class="{% if section.settings.highlight_icon_layout == 'left' %} flex text-left {% else %} text-center {% endif %}">
+                    <div class="carousel-cell px-4">
+                        <div class="{% if section.settings.highlight_icon_layout == 'left' %} flex text-left justify-center {% else %} text-center {% endif %}">
                             <div class="{% if section.settings.highlight_icon_layout == 'left' %} self-center mr-4 {% else %} mb-4 {% endif %} ">
                                 {% if block.settings.highlight_image == blank %}
-                                {% if block.settings.highlight_icon == 'icon1' %}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-highlights-icon clr-highlights-icon m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                                        <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                                    </svg>
-                                {% elsif block.settings.highlight_icon == 'icon2' %}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-highlights-icon clr-highlights-icon m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                                    </svg>
-                                {% elsif block.settings.highlight_icon == 'icon3' %}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-highlights-icon clr-highlights-icon m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                                    </svg>
-                                {% elsif block.settings.highlight_icon == 'icon4' %}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-highlights-icon clr-highlights-icon m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
+                                    {% if block.settings.highlight_icon == 'icon1' %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-highlights-icon clr-highlights-icon m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                                        </svg>
+                                    {% elsif block.settings.highlight_icon == 'icon2' %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-highlights-icon clr-highlights-icon m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                        </svg>
+                                    {% elsif block.settings.highlight_icon == 'icon3' %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-highlights-icon clr-highlights-icon m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                        </svg>
+                                    {% elsif block.settings.highlight_icon == 'icon4' %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-highlights-icon clr-highlights-icon m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                    {% endif %}
                                 {% endif %}
-                                {% endif %}
+                                {% if block.settings.highlight_image != blank %}<img class="size-highlights-icon mx-auto object-center object-cover" src="{{ block.settings.highlight_image | image_url }}"> {% endif %}
                             </div>
                             <div class="my-auto">
-                                {% if block.settings.highlight_image != blank %}<img class="h-16 max-w-max object-center object-cover" src="{{ block.settings.highlight_image | image_url }}"> {% endif %}
                                 {% if block.settings.highlight_heading != blank %}<h2 class="heading-sm clr-highlights-heading {% if block.settings.highlight_text != blank %} mb-2 {% endif %}">{{ block.settings.highlight_heading }}</h2> {% endif %}
                                 {% if block.settings.highlight_text != blank %}<p class="body-md clr-highlights-text {% if block.settings.highlights_link_url != blank %} mb-4 {% endif %}">{{ block.settings.highlight_text }}</p> {% endif %}
                                 {% if block.settings.highlights_link_url != blank %}<a target="_blank" class="clr-general-links" href="{{ block.settings.highlights_link_url }}">{{ block.settings.highlight_link_text }}</a> {% endif %}
@@ -38,36 +37,20 @@
                     </div>
                 {% endfor %}
           </div>
-  
     </div>
 </div>
 
 <style>
     #shopify-section-{{ section.id }} .clr-highlights-heading { color: {{ section.settings.highlight_heading_color }}; }
     #shopify-section-{{ section.id }} .clr-highlights-text { color: {{ section.settings.highlight_text_color }}; }
-    #shopify-section-{{ section.id }} .clr-highlights-background { color: {{ section.settings.highlight_background_color }}; }
+    #shopify-section-{{ section.id }} .clr-highlights-background { background-color: {{ section.settings.highlight_background_color }}; }
     #shopify-section-{{ section.id }} .clr-highlights-icon { color: {{ section.settings.highlight_icon_color }}; }
     #shopify-section-{{ section.id }} .size-highlights-icon { height: {{ section.settings.highlight_icon_size }}px; }
     #shopify-section-{{ section.id }} .size-highlights-icon { width: {{ section.settings.highlight_icon_size }}px; }
-    #shopify-section-{{ section.id }} .carousel-cell { width: 60%; {% if section.settings.highlights_layout_mobile == 'highlight-grid' %} width: 100%; {% endif %}   margin-right: 10px; }
-    #shopify-section-{{ section.id }} .main-carousel { width: 100%; margin-right: 10px; }
-
-    /* enable Flickity by default */
-    
-    
-   
- .main-carousel:after {
-  content: 'flickity';
-  display: none; /* hide :after */
-}
-
-@media screen and ( min-width: 768px ) {
-  /* disable Flickity for large devices */
-   .main-carousel:after {
-    content: '';
-  }
-}
-
+    #shopify-section-{{ section.id }} .carousel-cell { {% if section.blocks.size == 1 %} width:100%; {% else %} width:65%; {% endif %} {% if section.settings.highlights_layout_mobile == 'highlight-grid' %} width: 100%; {% endif %} }
+    #shopify-section-{{ section.id }} .main-carousel { width: 100%; }
+    #shopify-section-{{ section.id }} .main-carousel:after { content: 'flickity'; display: none; }
+   @media screen and ( min-width: 768px ) {  #shopify-section-{{ section.id }} .main-carousel:after { content: ''; } }
 </style>
 
 {% schema %}
