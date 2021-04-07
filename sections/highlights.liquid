@@ -1,0 +1,168 @@
+
+
+{% schema %}
+{
+    "name": "Highlights bar",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Layout"
+        },
+        {
+            "type": "select",
+            "id": "highlight_layout_desktop",
+            "label": "Desktop layout",
+            "default": "content-width",
+            "options": [
+                {
+                    "value": "full-width",
+                    "label": "Full width"
+                },
+                {
+                    "value": "content-width",
+                    "label": "Content width"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "highlights_layout_mobile",
+            "label": "Mobile layout",
+            "default": "highlight-grid",
+            "options": [
+                {
+                    "value": "highlight-grid",
+                    "label": "Grid"
+                },
+                {
+                    "value": "highlight-carousel",
+                    "label": "Carousel"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "Icon"
+        },
+        {
+            "type": "range",
+            "id": "highlight_icon_size",
+            "label": "Icon size",
+            "min": 16,
+            "max": 48,
+            "step": 1,
+            "default": 16,
+            "unit": "px"
+        },
+        {
+            "type": "select",
+            "id": "highlight_icon_layout",
+            "label": "Icon layout",
+            "default": "center",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "Colors"
+        },
+        {
+            "type": "color",
+            "id": "highlight_icon_color",
+            "label": "Icon color",
+            "default": "#30656B"
+        },
+        {
+            "type": "color",
+            "id": "highlight_heading_color",
+            "label": "Heading color",
+            "default": "#222222"
+        },
+        {
+            "type": "color",
+            "id": "highlight_text_color",
+            "label": "Text color",
+            "default": "#222222"
+        }
+    ],
+    "max_blocks": 4,
+    "blocks": [
+        {
+            "type": "Highlights",
+            "name": "Highlight",
+            "settings": [
+                {
+                    "type": "select",
+                    "id": "highlight_icon",
+                    "label": "Icon",
+                    "default": "icon1",
+                    "options": [
+                        {
+                            "value": "icon1",
+                            "label": "Icon 1"
+                        },
+                        {
+                            "value": "icon2",
+                            "label": "Icon 2"
+                        },
+                        {
+                            "value": "icon3",
+                            "label": "Icon 3"
+                        },
+                        {
+                            "value": "icon4",
+                            "label": "Icon 4"
+                        },
+                        {
+                            "value": "icon5",
+                            "label": "Icon 5"
+                        }
+                    ]
+                },
+                {
+                    "type": "image_picker",
+                    "id": "highlight_image",
+                    "label": "Icon image"
+                },
+                {
+                    "type": "text",
+                    "id": "highlight_heading",
+                    "label": "Heading",
+                    "default": "Highlight heading"
+                },
+                {
+                    "type": "textarea",
+                    "id": "highlight_text",
+                    "label": "Text",
+                    "default": "Highlight text"
+                },
+                {
+                    "type": "text",
+                    "id": "highlight_link_text",
+                    "label": "Link text",
+                    "default": "Learn more"
+                },
+                {
+                    "type": "url",
+                    "id": "highlights_link_url",
+                    "label": "Link url"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "category": "Text",
+            "name":"Highlights bar"
+        }
+    ]
+}
+{% endschema %}
