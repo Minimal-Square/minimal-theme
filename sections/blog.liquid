@@ -1,0 +1,63 @@
+
+
+{% schema %}
+{
+    "name": "Blog posts",
+    "settings": [
+        {
+            "type": "text",
+            "id": "blog_heading",
+            "label": "Heading" 
+        },
+        {
+            "type": "text",
+            "id": "blog_subheading",
+            "label": "Subheading"
+        },
+        {
+            "type": "blog",
+            "id": "blog",
+            "label": "Blog"
+        },
+        {
+            "type": "checkbox",
+            "id": "blog_date",
+            "label": "Show date",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "blog_author",
+            "label": "Show author",
+            "default": true
+        },
+        {
+            "type": "range",
+            "id": "blog_posts",
+            "label": "Posts",
+            "min": 2,
+            "max": 4,
+            "step": 1,
+            "default": 2
+        },
+        {
+            "type": "checkbox",
+            "id": "blog_link_activate",
+            "label": "Activate link",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "blog_link_text",
+            "label": "Link text",
+            "default": "See more"
+        }
+    ],
+    "presets": [
+        {
+            "category": "Blog",
+            "name":"Blog posts"
+        }
+    ]
+}
+{% endschema %}
