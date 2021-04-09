@@ -47,13 +47,54 @@
 {{ settings.font_body | font_modify: 'style', 'italic' | font_modify: 'weight', 'bolder' | font_face }}
 
 /* Font sizes */
-.heading-xl { font-size: {{ settings.base_font_size | times: 3.157 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; }
-.heading-lg { font-size: {{ settings.base_font_size | times: 2.369 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; }
-.heading-md { font-size: {{ settings.base_font_size | times: 1.777 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; }
-.heading-sm { font-size: {{ settings.base_font_size | times: 1.333 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; }
-.body-md { font-size: {{ settings.base_font_size }}px; font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; }
-.body-sm { font-size: {{ settings.base_font_size | times: 0.75 }}px; font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; }
-.body-xs { font-size: {{ settings.base_font_size | times: 0.563 }}px; font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; }
+/* .heading-xl { font-size: {{ settings.base_font_size | times: 3.157 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
+.heading-lg { font-size: {{ settings.base_font_size | times: 2.369 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
+.heading-md { font-size: {{ settings.base_font_size | times: 1.777 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
+.heading-sm { font-size: {{ settings.base_font_size | times: 1.333 }}px; font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
+.body-md { font-size: {{ settings.base_font_size }}px; font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; line-height: 1.25; }
+.body-sm { font-size: {{ settings.base_font_size | times: 0.75 }}px; font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; line-height: 1.25; }
+.body-xs { font-size: {{ settings.base_font_size | times: 0.563 }}px; font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; line-height: 1.25; } */
+
+.heading-xl { font-size: var(--heading-xl); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
+.heading-lg { font-size: var(--heading-lg); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
+.heading-md { font-size: var(--heading-md); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
+.heading-sm { font-size: var(--heading-sm); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
+.heading-xs { font-size: var(--heading-xs); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
+.body-md { font-size: var(--body-md); }
+.body-sm { font-size: var(--body-sm); }
+.body-xs { font-size: var(--body-xs); }
+
+:root {
+    --base-font-size: {{ settings.base_font_size }}px; /* 16px default */
+    --base-scale-ratio: 1.333;
+
+    --heading-xl: calc(var(--base-font-size) * 3); /* 48px */
+    --heading-lg: calc(var(--base-font-size) * 2.25); /* 36px */
+    --heading-md: calc(var(--base-font-size) * 1.75); /* 28px */
+    --heading-sm: calc(var(--base-font-size) * 1.375); /* 22px */ 
+    --heading-xs: calc(var(--base-font-size) * 1.125); /* 18px */
+    --body-md: calc(var(--base-font-size) * 1); /* 16px */
+    --body-sm: calc(var(--base-font-size) / 1.143); /* 14px */
+    --body-xs: calc(var(--body-sm) / 1.333); /* 12px */
+  }
+  
+@media only screen and (max-width: 1024px) {
+    :root {
+        --heading-xl: calc(var(--base-font-size) * 2.25); /* 32px Updated*/
+        --heading-lg: calc(var(--base-font-size) * 2.25); /* 36px */
+        --heading-md: calc(var(--base-font-size) * 1.75); /* 28px */
+        --heading-sm: calc(var(--base-font-size) * 1.375); /* 22px */ 
+        --heading-xs: calc(var(--base-font-size) * 1); /* 16px Updated */
+        --body-md: calc(var(--base-font-size) * 0.875); /* 14px Updated */
+        --body-sm: calc(var(--base-font-size) / 1.143); /* 14px */
+        --body-xs: calc(var(--body-sm) / 1.333); /* 12px */
+    }
+}
+
+/* Max-width */
+.max-width {
+    max-width: {{ settings.layout_max_width }}px;
+}
 
 
 /* BUTTONS */

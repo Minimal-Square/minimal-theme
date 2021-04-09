@@ -197,5 +197,20 @@
         "unit": "px"
       }
     ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "layout_max_width",
+        "label": "Max width",
+        "min": 1200,
+        "max": 1600,
+        "step": 100,
+        "default": 1500,
+        "unit": "px"
+      }
+    ]
   }
 ]
