@@ -1,0 +1,89 @@
+<section class="clr-background-logolist">
+    <div class="max-width mx-auto px-4 py-12 lg:py-24 space-y-12">
+        {% if section.settings.logo_list_heading != blank %}
+        <div class="text-center space-y-4">
+            {% if section.settings.logo_list_heading != blank %}<h2 class="heading-sm clr-general-text mb-4">{{ section.settings.logo_list_heading }}</h2>{% endif %}
+            {% if section.settings.logo_list_paragraph != blank %}<p class="body-md clr-general-text">{{ section.settings.logo_list_paragraph }}</p>{% endif %}
+        </div>
+        {% endif %}
+        <div class="md:flex md:justify-center md:space-x-16 grid grid-cols-2 justify-items-center gap-5">
+              {% for block in section.blocks %}
+                <div class="self-center">
+                  <img class="logolist-image-size logolist-image-size-mob max-w-max object-center object-cover" src="{{ block.settings.logo_list_image | img_url: 'master' }}">
+                </div>
+              {% endfor %}
+        </div>
+    </div>
+</section>
+  
+<style>
+    @media only screen and (max-width : 768px) { .logolist-image-size-mob { width: {{ section.settings.logolist_image_size_mobile }}px; } }
+    @media only screen and (min-width : 768px) { .logolist-image-size { width: {{ section.settings.logolist_image_size }}px; } }
+    .clr-background-logolist { background: {{ section.settings.logo_list_background }}; }
+</style>
+
+
+    {% schema %}
+    {
+        "name": "Logo list",
+        "max_blocks": 6,
+        "settings": [
+          {
+              "type": "text",
+              "id": "logo_list_heading",
+              "label": "Heading logo list",
+              "default": "Heading logo list"
+          },
+          {
+              "type": "textarea",
+              "id": "logo_list_paragraph",
+              "label": "Label logo list",
+              "default": "Paragraph logo list"
+          },
+          {
+              "type": "color",
+              "id": "logo_list_background",
+              "label": "Background color"
+          },
+          {
+            "type": "range",
+            "id": "logolist_image_size",
+            "label": "Image size",
+            "min": 70,
+            "max": 200,
+            "step": 2,
+            "default": 100,
+            "unit": "px"
+            },
+            {
+                "type": "range",
+                "id": "logolist_image_size_mobile",
+                "label": "Image size for mobile",
+                "min": 48,
+                "max": 80,
+                "step": 2,
+                "default": 48,
+                "unit": "px"
+            }
+        ],
+        "blocks": [
+          {
+              "name": "Logo list",
+              "type": "logolist",
+              "settings": [
+                  {
+                      "type": "image_picker",
+                      "id": "logo_list_image",
+                      "label": "Logo"
+                  }
+              ]
+          }
+        ],
+        "presets": [
+          {
+              "category": "Text Sections",
+              "name": "Logo list"
+          }
+        ]
+    }
+    {% endschema %}
