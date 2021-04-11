@@ -2,7 +2,7 @@
     <div class="px-4 md:px-0 mx-auto">
       <div class="max-w-screen-sm mx-auto text-center">
         <h2 class="heading-lg clr-general-headings mb-4">{{ section.settings.richtext_heading }}</h2>
-        <p class="body-md clr-general-text mb-6">{{ section.settings.richtext_paragraph }}</p>
+        <p class="body-md clr-general-text mb-6">{{ section.settings.richtext_text }}</p>
         <div class="flex justify-center">
           <a href="{{ section.settings.richtext_link_url }}" class="btn-lg {% if section.settings.richtext_button_style == 'primary' %} btn-primary {% elsif section.settings.richtext_button_style == 'secondary' %} btn-secondary {% endif %}">{{ section.settings.richtext_button_text }}</a>
         </div>
@@ -22,9 +22,9 @@
         },
         {
             "type": "text",
-            "id": "richtext_paragraph",
-            "label": "Paragraph",
-            "default": "Paragraph"
+            "id": "richtext_text",
+            "label": "Text",
+            "default": "Lorem ipsum dolor asimet"
         },
         {
             "type": "select",
