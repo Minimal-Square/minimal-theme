@@ -12,7 +12,7 @@
         {
             "type": "range",
             "id": "header_logo_height",
-            "label": "Logo image max-height",
+            "label": "Logo height",
             "unit": "px",
             "min": 40,
             "max": 100,
@@ -20,18 +20,8 @@
             "default": 40
         },
         {
-            "type": "range",
-            "id": "header_logo_width",
-            "label": "Logo image max-width",
-            "unit": "px",
-            "min": 150,
-            "max": 200,
-            "step": 1,
-            "default": 150
-        },
-        {
             "type": "header",
-            "content": "Layout"
+            "content": "Layout" 
         },
         {
             "type": "checkbox",
@@ -40,10 +30,19 @@
             "default": true
         },
         {
-            "type": "checkbox",
-            "id": "header_full_width_enable",
-            "label": "Enable full width header",
-            "default": true
+            "type": "select",
+            "id": "header_width",
+            "label": "Section width",
+            "options": [
+                {
+                    "value": "full-width",
+                    "label": "Full width"
+                },
+                {
+                    "value": "content-width",
+                    "label": "Content width"
+                }
+            ]
         },
         {
             "type": "header",
@@ -62,6 +61,12 @@
         {
             "type": "checkbox",
             "id": "header_search_activate",
+            "label": "Activate search",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "header_search_live_activate",
             "label": "Activate live search",
             "default": true
         },
@@ -72,26 +77,94 @@
             "default": false
         },
         {
+            "type": "text",
+            "id": "header_search_quick_links_heading",
+            "label": "Quick links heading",
+            "default": "Suggestion"
+        },
+        {
             "type": "link_list",
             "id": "header_search_quick_links",
-            "label": "Quick link menu"
+            "label": "Quick links menu"
         }
     ],
-    "max_blocks": 2,
+    "max_blocks": 6,
     "blocks": [
         {
             "type": "megamenu_image",
             "name": "Image",
-            "limit": 2,
+            "limit": 6,
             "settings": [
                 {
+                    "type": "text",
+                    "id": "header_megamenu_image_trigger",
+                    "label": "Menu trigger"
+                },
+                {
+                    "type": "header",
+                    "content": "Image 1"
+                },
+                {
                     "type": "image_picker",
-                    "id": "header_megamenu_image",
+                    "id": "header_megamenu_image_1",
                     "label": "Image"
                 },
                 {
                     "type": "select",
-                    "id": "header_megamenu_image_size",
+                    "id": "header_megamenu_image_size_1",
+                    "label": "Image size",
+                    "options": [
+                        {
+                            "value": "small",
+                            "label": "Small"
+                        },
+                        {
+                            "value": "medium",
+                            "label": "Medium"
+                        },
+                        {
+                            "value": "large",
+                            "label": "Large"
+                        }
+                    ]
+                }, 
+                {
+                    "type": "url",
+                    "id": "header_megamenu_image_url_1",
+                    "label": "Image URL"
+                },
+                {
+                    "type": "select",
+                    "id": "header_megamenu_image_position_1",
+                    "label": "Position",
+                    "options": [
+                        {
+                            "value": "first-column",
+                            "label": "First column"
+                        },
+                        {
+                            "value": "last-column",
+                            "label": "Last column"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "id": "header_megamenu_image_text_1",
+                    "label": "Text"
+                },
+                {
+                    "type": "header",
+                    "content": "Image 2"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "header_megamenu_image_2",
+                    "label": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "header_megamenu_image_size_2",
                     "label": "Image size",
                     "options": [
                         {
@@ -110,12 +183,12 @@
                 },
                 {
                     "type": "url",
-                    "id": "header_megamenu_image_url",
+                    "id": "header_megamenu_image_url_2",
                     "label": "Image URL"
                 },
                 {
                     "type": "select",
-                    "id": "header_megamenu_image_position",
+                    "id": "header_megamenu_image_position_2",
                     "label": "Position",
                     "options": [
                         {
@@ -130,25 +203,29 @@
                 },
                 {
                     "type": "text",
-                    "id": "header_megamenu_image_text",
+                    "id": "header_megamenu_image_text_2",
                     "label": "Text"
-                },
-                {
-                    "type": "text",
-                    "id": "header_megamenu_image_trigger",
-                    "label": "Menu trigger"
                 }
             ]
         },
         {
             "type": "megamenu_multi_column",
             "name": "Multi column",
-            "limit": 5,
+            "limit": 6,
             "settings": [
                 {
                     "type": "text",
                     "id": "header_megamenu_multi_column_trigger",
                     "label": "Menu trigger"
+                },
+                {
+                    "type": "range",
+                    "id": "header_megamenu_multi_column_number",
+                    "label": "Number of columns",
+                    "min": 2,
+                    "max": 6,
+                    "step": 1,
+                    "default": 3
                 }
             ]
         }
