@@ -11,8 +11,7 @@
   {{ 'application.css' | asset_url | stylesheet_tag }}
   {{ 'custom.css' | asset_url | stylesheet_tag }}
   {{ 'flickity.css' | asset_url | stylesheet_tag }}
-  {{ 'application.js' | asset_url | script_tag }} 
-  {{ 'flickity.js' | asset_url | script_tag }} 
+  
 
 </head>
 <body>
@@ -20,5 +19,9 @@
   <main role="main">
     {{ content_for_layout }}
   </main>
+
+  {{ 'jquery.js' | asset_url | script_tag }}
+  {{ 'flickity.js' | asset_url | script_tag }} 
+  {{ 'application.js' | asset_url | script_tag }} 
 </body>
 </html>
