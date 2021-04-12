@@ -148,6 +148,7 @@
 {% assign colorSecond = settings.clr_button_secondary_background | color_brightness %}
 
 .btn-secondary {
+    box-sizing: border-box;
     background-color: {{ settings.clr_button_secondary_background }};
     color: {{ settings.clr_button_secondary_text }};
     border: 1px solid {{ settings.clr_button_secondary_border }};
@@ -208,4 +209,4 @@
         font-weight: 500;
         display: inline-block;
     }
-} 
+}
