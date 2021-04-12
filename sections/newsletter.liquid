@@ -26,14 +26,15 @@
       {% if settings.display_last_name %}
         <input type="text" value="" name="LNAME" placeholder="{{ 'general.newsletter_form.subscriber_last_name' | t }}">
       {% endif %}
-      
+      <div class="flex items-center space-x-2">
         <input type="hidden" name="contact[tags]" value="newsletter">
-      <input class="clr-form-background clr-form-text clr-form-border" type="email" name="EMAIL"
-      value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
-      placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-      autocorrect="off"
-      autocapitalize="off">
-      <input class="border rounded-md w-full py-3 px-4 bg-black text-white mt-4 action_button sign_up" type="submit" value=" {{ 'general.newsletter_form.submit' | t }}"  id="Subscribe">
+        <input class="input clr-form-background clr-form-text clr-form-border border-input" type="email" name="EMAIL"
+        value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+        placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" 
+        autocorrect="off"
+        autocapitalize="off">
+        <input class="btn-lg btn-primary" type="submit" value=" {{ 'general.newsletter_form.submit' | t }}"  id="Subscribe">
+    </div>
     </form>
     {% else %}  
       {% form 'customer' %}
