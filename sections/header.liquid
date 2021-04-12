@@ -1,0 +1,234 @@
+
+
+{% schema %}
+{
+    "name": "Header",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "header_logo",
+            "label": "Logo"
+        },
+        {
+            "type": "range",
+            "id": "header_logo_height",
+            "label": "Logo height",
+            "unit": "px",
+            "min": 40,
+            "max": 100,
+            "step": 1,
+            "default": 40
+        },
+        {
+            "type": "header",
+            "content": "Layout" 
+        },
+        {
+            "type": "checkbox",
+            "id": "header_sticky_enable",
+            "label": "Enable sticky header",
+            "default": true
+        },
+        {
+            "type": "select",
+            "id": "header_width",
+            "label": "Section width",
+            "options": [
+                {
+                    "value": "full-width",
+                    "label": "Full width"
+                },
+                {
+                    "value": "content-width",
+                    "label": "Content width"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "Navigation"
+        },
+        {
+            "type": "link_list",
+            "id": "header_main_menu",
+            "label": "Select menu",
+            "default": "main-menu"
+        },
+        {
+            "type": "header",
+            "content": "Search"
+        },
+        {
+            "type": "checkbox",
+            "id": "header_search_activate",
+            "label": "Activate search",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "header_search_live_activate",
+            "label": "Activate live search",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "header_search_quick_links_activate",
+            "label": "Activate quick links",
+            "default": false
+        },
+        {
+            "type": "text",
+            "id": "header_search_quick_links_heading",
+            "label": "Quick links heading",
+            "default": "Suggestion"
+        },
+        {
+            "type": "link_list",
+            "id": "header_search_quick_links",
+            "label": "Quick links menu"
+        }
+    ],
+    "max_blocks": 6,
+    "blocks": [
+        {
+            "type": "megamenu_image",
+            "name": "Image",
+            "limit": 6,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "header_megamenu_image_trigger",
+                    "label": "Menu trigger"
+                },
+                {
+                    "type": "header",
+                    "content": "Image 1"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "header_megamenu_image_1",
+                    "label": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "header_megamenu_image_size_1",
+                    "label": "Image size",
+                    "options": [
+                        {
+                            "value": "small",
+                            "label": "Small"
+                        },
+                        {
+                            "value": "medium",
+                            "label": "Medium"
+                        },
+                        {
+                            "value": "large",
+                            "label": "Large"
+                        }
+                    ]
+                }, 
+                {
+                    "type": "url",
+                    "id": "header_megamenu_image_url_1",
+                    "label": "Image URL"
+                },
+                {
+                    "type": "select",
+                    "id": "header_megamenu_image_position_1",
+                    "label": "Position",
+                    "options": [
+                        {
+                            "value": "first-column",
+                            "label": "First column"
+                        },
+                        {
+                            "value": "last-column",
+                            "label": "Last column"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "id": "header_megamenu_image_text_1",
+                    "label": "Text"
+                },
+                {
+                    "type": "header",
+                    "content": "Image 2"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "header_megamenu_image_2",
+                    "label": "Image"
+                },
+                {
+                    "type": "select",
+                    "id": "header_megamenu_image_size_2",
+                    "label": "Image size",
+                    "options": [
+                        {
+                            "value": "small",
+                            "label": "Small"
+                        },
+                        {
+                            "value": "medium",
+                            "label": "Medium"
+                        },
+                        {
+                            "value": "large",
+                            "label": "Large"
+                        }
+                    ]
+                },
+                {
+                    "type": "url",
+                    "id": "header_megamenu_image_url_2",
+                    "label": "Image URL"
+                },
+                {
+                    "type": "select",
+                    "id": "header_megamenu_image_position_2",
+                    "label": "Position",
+                    "options": [
+                        {
+                            "value": "first-column",
+                            "label": "First column"
+                        },
+                        {
+                            "value": "last-column",
+                            "label": "Last column"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "id": "header_megamenu_image_text_2",
+                    "label": "Text"
+                }
+            ]
+        },
+        {
+            "type": "megamenu_multi_column",
+            "name": "Multi column",
+            "limit": 6,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "header_megamenu_multi_column_trigger",
+                    "label": "Menu trigger"
+                },
+                {
+                    "type": "range",
+                    "id": "header_megamenu_multi_column_number",
+                    "label": "Number of columns",
+                    "min": 2,
+                    "max": 6,
+                    "step": 1,
+                    "default": 3
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
