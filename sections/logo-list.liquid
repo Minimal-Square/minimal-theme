@@ -1,15 +1,15 @@
-<section class="clr-background-logolist">
-    <div class="max-width mx-auto px-4 py-12 lg:py-24 space-y-12">
-        {% if section.settings.logo_list_heading != blank %}
-        <div class="text-center space-y-4">
-            {% if section.settings.logo_list_heading != blank %}<h2 class="heading-sm clr-general-text mb-4">{{ section.settings.logo_list_heading }}</h2>{% endif %}
-            {% if section.settings.logo_list_paragraph != blank %}<p class="body-md clr-general-text">{{ section.settings.logo_list_paragraph }}</p>{% endif %}
+<section class="clr-background-logo-list">
+    <div class="max-width mx-auto px-4 py-4">
+        {% if section.settings.logo_list_heading != blank or section.settings.logo_list_text != blank %}
+        <div class="text-center mb-6 lg:mb-8 {% if section.settings.logo_list_text != blank %} space-y-3 lg:space-y-4 {% endif %}">
+            {% if section.settings.logo_list_heading != blank %}<h2 class="heading-sm clr-general-headings">{{ section.settings.logo_list_heading }}</h2>{% endif %}
+            {% if section.settings.logo_list_text != blank %}<p class="body-md clr-general-text">{{ section.settings.logo_list_text }}</p>{% endif %}
         </div>
         {% endif %}
-        <div class="md:flex md:justify-center md:space-x-16 grid grid-cols-2 justify-items-center gap-5">
+        <div class="flex flex-wrap justify-center justify-items-center">
               {% for block in section.blocks %}
-                <div class="self-center">
-                  <img class="logolist-image-size logolist-image-size-mob max-w-max object-center object-cover" src="{{ block.settings.logo_list_image | img_url: 'master' }}">
+                <div class="self-center my-4 mx-4 lg:mx-8">
+                  <img class="logo-list-image-size logo-list-image-size-mobile object-center object-cover" src="{{ block.settings.logo_list_image | img_url: '180x180' }}">
                 </div>
               {% endfor %}
         </div>
@@ -17,9 +17,9 @@
 </section>
   
 <style>
-    @media only screen and (max-width : 768px) { .logolist-image-size-mob { width: {{ section.settings.logolist_image_size_mobile }}px; } }
-    @media only screen and (min-width : 768px) { .logolist-image-size { width: {{ section.settings.logolist_image_size }}px; } }
-    .clr-background-logolist { background: {{ section.settings.logo_list_background }}; }
+    @media only screen and (max-width : 1280px) { .logo-list-image-size-mobile { width: {{ section.settings.logo_list_image_size_mobile }}px; } }
+    @media only screen and (min-width : 1280px) { .logo-list-image-size { width: {{ section.settings.logo_list_image_size }}px; } }
+    .clr-background-logo-list { background: {{ section.settings.logo_list_background }}; }
 </style>
 
 
@@ -31,13 +31,13 @@
           {
               "type": "text",
               "id": "logo_list_heading",
-              "label": "Heading logo list",
+              "label": "Heading",
               "default": "Heading logo list"
           },
           {
               "type": "textarea",
-              "id": "logo_list_paragraph",
-              "label": "Label logo list",
+              "id": "logo_list_text",
+              "label": "Text",
               "default": "Paragraph logo list"
           },
           {
@@ -47,22 +47,22 @@
           },
           {
             "type": "range",
-            "id": "logolist_image_size",
+            "id": "logo_list_image_size",
             "label": "Image size",
             "min": 70,
-            "max": 200,
+            "max": 150,
             "step": 2,
-            "default": 100,
+            "default": 130,
             "unit": "px"
             },
             {
                 "type": "range",
-                "id": "logolist_image_size_mobile",
-                "label": "Image size for mobile",
-                "min": 48,
-                "max": 80,
+                "id": "logo_list_image_size_mobile",
+                "label": "Image size mobile",
+                "min": 64,
+                "max": 96,
                 "step": 2,
-                "default": 48,
+                "default": 80,
                 "unit": "px"
             }
         ],
@@ -81,7 +81,7 @@
         ],
         "presets": [
           {
-              "category": "Text Sections",
+              "category": "Image",
               "name": "Logo list"
           }
         ]
