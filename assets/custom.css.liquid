@@ -28,13 +28,14 @@
 
 /* Footer colors */
 .clr-footer-background { background-color: {{ settings.clr_footer_background }}; }
+.clr-footer-headings { color: {{ settings.clr_footer_headings }}; }
 .clr-footer-text { color: {{ settings.clr_footer_text }}; }
 
 /* Site overlays */
 .clr-overlay { background-color: {{ settings.clr_overlay }}; }
 .clr-overlay_opacity { opacity: {{ settings.clr_overlay_opacity }}; }
 
-
+ 
 /* TYPOGRAPHY */
 /* Font Face */
 {{ settings.font_heading | font_face }}
@@ -165,7 +166,7 @@
 /* INPUT */
 .input {
     height: 3rem;
-    width: 21.875rem;
+    width: 100%;
     padding: 0.375rem 0.75rem;
     border: 1px solid #E0E0E0;
     border-radius: 4px;

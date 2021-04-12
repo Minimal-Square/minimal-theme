@@ -144,8 +144,14 @@
       },
       {
         "type": "color",
+        "id": "clr_footer_headings",
+        "label": "Headings",
+        "default": "#5C5C5C"
+      },
+      {
+        "type": "color",
         "id": "clr_footer_text",
-        "label": "Text",
+        "label": "Paragraphs",
         "default": "#5C5C5C"
       },
       {
@@ -168,6 +174,85 @@
         "step": 5,
         "default": 50,
         "unit": "%" 
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social sharing options"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_share_facebook",
+        "label": "Share on Facebook",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "social_share_twitter",
+        "label": "Share on Twitter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "social_share_pinterest",
+        "label": "Share on Pinterest",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Social accounts"
+      },
+      {
+        "type": "text",
+        "id": "social_accounts_facebook",
+        "label": "Facebook",
+        "info": "https://facebook.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_accounts_twitter",
+        "label": "Twitter",
+        "info": "https://twitter.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_accounts_pinterest",
+        "label": "Pinterest",
+        "info": "https://pinterest.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_accounts_instagram",
+        "label": "Instagram",
+        "info": "https://instagram.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_accounts_tumblr",
+        "label": "Tumblr",
+        "info": "https://shopify.tumblr.com"
+      },
+      {
+        "type": "text",
+        "id": "social_accounts_snapchat",
+        "label": "Snapchat",
+        "info": "https://snapchat.com/add/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_accounts_youtube",
+        "label": "Youtube",
+        "info": "https://youtube.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_accounts_vimeo",
+        "label": "Vimeo",
+        "info": "https://vimeo.com/shopify"
       }
     ]
   },
