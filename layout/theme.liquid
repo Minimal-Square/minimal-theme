@@ -17,7 +17,9 @@
 </head>
 <body>
   {% section 'announcement' %}
-  {% section 'header' %}
+  <div class="border-b border-gray-200 relative z-10"  id="header">
+    {% section 'header' %}
+  </div>
   <main role="main">
     {{ content_for_layout }}
   </main>
