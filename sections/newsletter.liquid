@@ -1,15 +1,7 @@
-{%- comment -%}
-  This is a required section for the Shopify Theme Store.
-  It is available when you add "Newsletter" section on the Theme Editor.
-
-  Theme Store required settings
-  - Heading: title of the newsletter section
-  - Subheading: description of the newsletter section
-{%- endcomment -%}
-<section class="sm:w-128 mx-auto py-12 lg:py-24 space-y-12">
+<section class="max-w-screen-sm px-4 sm:px-0 mx-auto py-12 lg:py-24 space-y-12">
     <div class="text-center space-y-4">
         {% if section.settings.section_title != blank %}
-        <h2 class="heading-sm clr-general-text" for="Email">{{ section.settings.section_title | escape }}</h2>
+        <h2 class="heading-sm clr-general-headings" for="Email">{{ section.settings.section_title | escape }}</h2>
         {% endif %}
         {% if section.settings.subheading != blank %}
         <p class="body-md clr-general-light-text">{{ section.settings.subheading | escape }}</p>
@@ -47,16 +39,18 @@
             <p class="text-center text-green-700">{{ 'general.newsletter_form.confirmation' | t }}</p>
         {% else %}
         <div class="flex items-center space-x-2">
-            <input type="hidden" name="contact[tags]" value="newsletter">
-            <input class="input clr-form-background clr-form-text clr-form-border border-input" type="email"
-            name="contact[email]"
-            id="Email"
-            value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
-            placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-            autocorrect="off"
-            autocapitalize="off">
+            <div class="w-full">
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <input class="input clr-form-background clr-form-text clr-form-border border-input" type="email"
+                name="contact[email]"
+                id="Email"
+                value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+                placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                autocorrect="off"
+                autocapitalize="off">
+            </div>
             <button class="btn-lg btn-primary" type="submit" name="commit" id="Subscribe">
-            <span>{{ 'general.newsletter_form.submit' | t }}</span>
+              <span>{{ 'general.newsletter_form.submit' | t }}</span>
             </button>
         </div>
         {% endif %}
