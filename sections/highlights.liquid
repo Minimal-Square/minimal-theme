@@ -10,7 +10,7 @@
  
 
 <div class="clr-highlights-background">
-    <div class="md:px-6 max-width mx-auto">
+    <div class="max-width mx-auto">
             <div class="py-6{% if section.settings.highlights_layout_mobile != 'highlight-grid' %} main-carousel lg:flex {% elsif section.settings.highlights_layout_mobile == 'highlight-grid' %} grid grid-cols-2 gap-4 md:flex md:justify-between {% endif %}" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false, "watchCSS": true, "prevNextButtons": false }'> 
                 {% for block in section.blocks %}
                     <div class="carousel-cell">
