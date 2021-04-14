@@ -8,6 +8,7 @@
   <link rel="canonical" href="{{ canonical_url }}">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   {{ content_for_header }} <!-- Header hook for plugins -->
+  {{ 'jquery.modal.css' | asset_url | stylesheet_tag }}
   {{ 'application.css' | asset_url | stylesheet_tag }}
   {{ 'custom.css' | asset_url | stylesheet_tag }}
   {{ 'flickity.css' | asset_url | stylesheet_tag }}
@@ -16,16 +17,35 @@
 
 </head>
 <body>
+  <div class="w-full bg-black bg-opacity-20 fixed h-screen hidden maskCartDrawer" style="z-index: 9996;"></div>
+  <div class="cart-drawer fixed h-screen hidden" style="right: -18rem; z-index: 9997;">
+      {% render 'cart-drawer' %}
+  </div>
   {% section 'announcement' %}
-  {% section 'header' %}
-  <main role="main">
+  <div class="border-b border-gray-200 relative z-10"  id="header">
+    {% section 'header' %}
+  </div>
+  <main role="main" class="content">
     {{ content_for_layout }}
   </main>
   {% section 'video' %}
   {% section 'footer' %}
   
   {{ 'jquery.js' | asset_url | script_tag }}
+  {{ 'jquery.modal.min.js' | asset_url | script_tag }}
   {{ 'flickity.js' | asset_url | script_tag }} 
-  {{ 'application.js' | asset_url | script_tag }} 
+  {{ 'application.js' | asset_url | script_tag }}
+  <!-- Cart.js -->
+  {{ 'rivets-cart.min.js' | asset_url | script_tag }}
+  {{ 'cart.min.js' | asset_url | script_tag }}
+  <!-- Initialise Cart.js once the page has loaded -->
+  <script type="text/javascript">
+    $(function () {
+        CartJS.init({{ cart | json }}, {
+            "moneyFormat": "{{ shop.money_format }}",
+            "moneyWithCurrencyFormat": "{{ shop.money_with_currency_format }}"
+        });
+    });
+  </script>
 </body>
 </html>
