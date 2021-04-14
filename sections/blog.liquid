@@ -1,6 +1,6 @@
 {% assign blog_per_row = section.settings.blog_per_row %}
 
-<section class="max-width mx-auto md:px-6 py-12 lg:py-16">
+<section class="max-width mx-auto py-12 lg:py-16">
     <div class="text-center mb-6 lg:mb-8 space-y-3 lg:space-y-4 lg:w-128 mx-auto">
         <h1 class="heading-sm clr-general-headings">{{ section.settings.blog_heading | escape }}</h1>
         <p class="body-md clr-general-text">{{ section.settings.blog_subheading | escape }}</p>
@@ -18,7 +18,7 @@
                 lg:grid-cols-5
             {% endif %}" data-flickity='{ "cellAlign": "left", "contain": true, "watchCSS": true, "prevNextButtons": false, "pageDots": false }'>
             {%- for article in blog.articles limit: section.settings.blog_posts -%}
-                <div class="carousel-cell pl-4">
+                <div class="carousel-cell">
                     <div class="border">
                         {%- if article.image -%}
                             <div class="aspect-h-3 aspect-w-6">
@@ -61,13 +61,37 @@
   </section>
 
 
-
+  
 <style>
-    #shopify-section-{{ section.id }} .main-carousel:after { content: 'flickity'; display: none; } #shopify-section-{{ section.id }} .carousel-cell { width: 100%; }
-    @media screen and ( min-width: 768px ) { #shopify-section-{{ section.id }} .main-carousel:after { content: ''; } }
-    @media screen and ( max-width: 600px ) { #shopify-section-{{ section.id }} .carousel-cell { width: 70%; } }
-    .border-1 { border-left: 1px solid {{ settings.clr_general_light_text }}; }
-    #shopify-section-{{ section.id }} .carousel-cell:last-child { padding-right: 16px; }
+
+    #shopify-section-{{ section.id }} .main-carousel:after {
+        content: 'flickity';
+        display: none;
+    }
+    #shopify-section-{{ section.id }} .carousel-cell {
+        width: 100%;
+    }
+
+    @media screen and ( min-width: 768px ) {
+        #shopify-section-{{ section.id }} .main-carousel:after {
+            content: '';
+        }
+    }
+    
+    @media screen and ( max-width: 768px ) {
+        #shopify-section-{{ section.id }} .carousel-cell {
+            width: 70%;
+            padding-left: 12px;
+        }
+        #shopify-section-{{ section.id }} .carousel-cell:first-child {
+            padding: 0 !important;
+        }
+    }
+    
+    .border-1 {
+        border-left: 1px solid {{ settings.clr_general_light_text }};
+    }
+
 </style>
     
 

@@ -1,4 +1,4 @@
-<section class="max-width mx-auto text-center px-4 md:px-6 py-12 lg:py-16"> 
+<section class="max-width mx-auto text-center py-12 lg:py-16"> 
     {% if section.settings.collection_list_heading != blank or section.settings.collection_list_subheading != blank %}
         <div class="mb-6 lg:mb-8">
             {% if section.settings.collection_list_heading != blank %}<h2 class="heading-sm clr-general-heading mb-3 lg:mb-4">{{ section.settings.collection_list_heading }}</h2>{% endif %}
@@ -11,7 +11,6 @@
             {% include 'collection-list-tile', collection: collection %}
         {% endfor %}
     </div>
-    <a class="btn-sm btn-secondary" href="{{ routes.collections_url }}">{{ section.settings.collection_list_link_text }}</a>
 </section>
 
 <style>
@@ -24,7 +23,7 @@
         #shopify-section-{{ section.id }} .mt-dynamic:nth-child(n+{{ section.settings.collection_list_per_row | plus: 1 }}) {
             margin-top: 16px;
         }
-    }
+    } 
 </style>
 
 {% schema %} 
@@ -68,12 +67,6 @@
             "max": 3,
             "step": 1,
             "default": 2
-        },
-        {
-            "type": "text",
-            "id": "collection_list_link_text",
-            "label": "Link text",
-            "default": "Shop All"
         }
     ],
     "max_blocks": 12,
