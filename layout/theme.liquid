@@ -28,8 +28,9 @@
   <main role="main" class="content">
     {{ content_for_layout }}
   </main>
+  {% section 'video' %}
   {% section 'footer' %}
-
+  
   {{ 'jquery.js' | asset_url | script_tag }}
   {{ 'jquery.modal.min.js' | asset_url | script_tag }}
   {{ 'flickity.js' | asset_url | script_tag }} 

@@ -93,14 +93,14 @@
 
 /* Max-width */
 
-.max-width {
+.max-width, iframe {
     max-width: {{ settings.layout_max_width }}px;
     padding-left: 24px;
     padding-right: 24px;
 }
 
 @media screen and (max-width: 639px) {
-    .max-width {
+    .max-width, iframe {
         max-width: {{ settings.layout_max_width }}px;
         padding-left: 12px;
         padding-right: 12px;
@@ -108,7 +108,7 @@
 }
 
 @media screen and (min-width: 640px) and (max-width: 1024px) {
-    .max-width {
+    .max-width, iframe {
         max-width: {{ settings.layout_max_width }}px;
         padding-left: 16px;
         padding-right: 16px;
