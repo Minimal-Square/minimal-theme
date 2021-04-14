@@ -42,7 +42,8 @@
       "tags": "Tags",
       "comment_meta_html": "{{ author }} on {{ date }}",
       "read_more": "Read more",
-      "see_more": "See more"
+      "see_more": "See more",
+      "share_this": "Share this:"
     },
     "comments": {
       "title": "Leave a comment",
