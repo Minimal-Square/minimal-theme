@@ -1,4 +1,4 @@
-<div class="carousel-cell w-full mr-4">
+<div class="{% if section.settings.collection_layout == 'carousel' %} carousel-cell {% endif %} w-full">
 <div class="bg-white w-full h-full relative hoverDropdown shadow p-3 lg:p-4 {% if section.settings.collection_box == true %} p-4 {% endif %}">
     <a href="{{ product.url }}">
         {% unless product.available %}

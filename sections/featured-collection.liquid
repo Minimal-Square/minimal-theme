@@ -4,9 +4,9 @@
 {% assign collection_button_text = section.settings.collection_button_text %}
 
 <section class="collection-background">
-    <div class="max-width mx-auto px-4 py-12 lg:py-24 space-y-12">
+    <div class="max-width mx-auto py-12 lg:py-24 space-y-12">
         <div class="text-center">
-            <h2 class="heading-sm clr-general-text mb-4">{{ section.settings.collection_title }}</h2>
+            <h2 class="heading-sm clr-general-headings mb-4">{{ section.settings.collection_title }}</h2>
             <p class="body-md clr-general-text">{{ section.settings.collection_paragraph }}</p>
         </div>
         <div class="
@@ -24,9 +24,10 @@
                 lg:grid-cols-5
             {% endif %}
         {% endif %}
-        " data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false, "watchCSS": false, "prevNextButtons": true }'>
-            {% assign limit = section.settings.collection_number_of_products %}
-            {% render 'collection-tile' for collections[section.settings.collection].products as product, with limit %}
+        " {% if section.settings.collection_layout == 'carousel' %} data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false, "watchCSS": false, "prevNextButtons": true }' {% endif %}>
+            {% for product in collections[section.settings.collection].products limit: section.settings.collection_number_of_products %}
+                {% include 'collection-tile' %}
+            {% endfor %}
         </div>
         {% if section.settings.collection_button_text != blank %}
             <div class="text-center">
@@ -41,17 +42,18 @@
 
 <style>
     #shopify-section-{{ section.id }} .collection-background { background: {{ section.settings.collection_background }}; }
-    /* #shopify-section-{{ section.id }} .carousel-cell { {% if section.blocks.size == 1 %} width:100%; {% else %} width: 60%; {% endif %} {% if section.settings.highlights_layout_mobile == 'highlight-grid' %} width: 100%; {% endif %} } */
-    #shopify-section-{{ section.id }} .main-carousel { width: 100%; }
-    /* #shopify-section-{{ section.id }} .main-carousel:after { content: 'flickity'; display: none; }
-    @media screen and ( min-width: 1024px ) { #shopify-section-{{ section.id }} .main-carousel:after { content: ''; } } */
-    @media screen and ( min-width: 1024px ) { #shopify-section-{{ section.id }} .carousel-cell { width: 20%; } }
-    @media screen and ( min-width: 640px ) and ( max-width: 1024px ) {
-        #shopify-section-{{ section.id }} .carousel-cell { {% if section.blocks.size == 1 %} width:100%; {% else %} width: 35%; {% endif %} }
+    #shopify-section-{{ section.id }} .carousel-cell { {% if section.blocks.size == 1 %} width: 100%; {% else %} width: 60%; {% endif %} {% if section.settings.highlights_layout_mobile == 'highlight-grid' %} width: 100%; {% endif %} }
+    #shopify-section-{{ section.id }} .carousel-cell {
+        width: calc(100% / {{ section.settings.products_per_row }} - 12px);
     }
 
-    #shopify-section-{{ section.id }} .carousel-cell {
-        width: max-content )
+    @media screen and ( max-width: 768px ) {
+        #shopify-section-{{ section.id }} .carousel-cell { width: 50%; margin-left: 12px; } 
+        #shopify-section-{{ section.id }} .carousel-cell:first-child { padding: 0 !important; }
+    }
+
+    @media screen and ( min-width: 768px ) {
+        #shopify-section-{{ section.id }} .carousel-cell { margin-right: 16px; } 
     }
 
     /* icon color */
