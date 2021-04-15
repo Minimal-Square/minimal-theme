@@ -1,3 +1,29 @@
+{%- assign new_comment = false -%}
+{%- assign number_of_comments = article.comments_count -%}
+
+{%- if comment and comment.created_at -%}
+  {%- assign new_comment = true -%}
+  {%- assign new_comment_id = comment.id -%}
+{%- endif -%}
+
+{%- if new_comment -%}
+  {%- comment -%}
+    When you refresh the page with submitted comment, the comment is duplicated
+    so we added a flag to avoid this situation.
+  {%- endcomment -%}
+  {%- assign duplicate_comment = false -%}
+  {%- for comment in article.comments -%}
+    {%- if comment.id == new_comment_id -%}
+      {%- assign duplicate_comment = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- unless duplicate_comment -%}
+    {%- assign number_of_comments = article.comments_count | plus: 1 -%}
+  {%- endunless -%}
+{%- endif -%}
+
 <article>
     <header class="m-0 p-0">
         <div class="bg-cover h-96 w-full bg-center mb-8" style="background-image:url('{{ article.image.src | img_url: '2048x2048' }}');"></div>
@@ -16,6 +42,20 @@
         <div class="body-md clr-general-text">
             {{ article.content }}
         </div>
+        {% if section.settings.blog_show_tags %}
+        <div class="flex space-x-2 mt-8">
+          <span class="body-sm clr-general-text">{{ 'blogs.article.filed_in' | t }}</span>
+          <ul aria-label="Tags">
+            {%- for tag in article.tags -%}
+            <li class="body-sm clr-general-light-text">
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+                    {{ tag }}
+                </a>
+            </li>
+            {%- endfor -%}
+        </ul>
+        </div>
+        {% endif %}
         <div class="{% if section.settings.blog_show_social_icon == false %} mt-16 {% endif %} ">
             {% if section.settings.blog_show_social_icon %}
                 <div class="py-12 md:py-16 space-y-2">
@@ -40,7 +80,7 @@
                             <a class="space-y-2 " href="{{ blog.previous_article }}">
                                 <div class="flex items-center space-x-1 text-base">
                                     <span aria-hidden="true" class="text-lg icon icon-chevron-left"></span>
-                                    <span class="body-md clr-general-text m-0 px-1">{{ 'blogs.article.older_post' | t }}</span>
+                                    <span class="body-md clr-general-links m-0 px-1">{{ 'blogs.article.older_post' | t }}</span>
                                 </div>
                                 <p class="body-sm clr-general-light-text max-w-xs hidden md:block italic"> {{ blog.previous_article.title }}</p>
                             </a>
@@ -51,7 +91,7 @@
                             <a class="space-y-2" href="{{ blog.next_article }}">
                                 <div class="flex items-center flex-row-reverse space-x-1 text-base">
                                     <span aria-hidden="true" class="text-lg icon icon-chevron-right"></span>
-                                    <span class="body-md clr-general-text m-0 px-1"> {{ 'blogs.article.newer_post' | t }}</span>
+                                    <span class="body-md clr-general-links m-0 px-1"> {{ 'blogs.article.newer_post' | t }}</span>
                                 </div>
                                 <p class="body-sm clr-general-light-text text-right max-w-xs hidden md:block italic">{{ blog.next_article.title }}</p>
                             </a>
@@ -59,15 +99,124 @@
                     {% endif %}
                 </div>
             {% endif %}
-            <ul aria-label="Tags">
-                {%- for tag in article.tags -%}
-                <li>
-                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
-                        {{ tag }}
-                    </a>
-                </li>
-                {%- endfor -%}
+          <div class="mt-12">
+            {% if blog.comments_enabled? %}
+            {% if article.comments_count > 0 %}
+            <h3 class="heading-md clr-general-headings mb-4">{{ 'blogs.comments.title_comments' | t }}</h3>
+            {% endif %}
+            {% paginate article.comments by 5 %}
+            <div class="mb-12" id="comments">
+              {% if comment and comment.status and comment.id != blank and paginate.current_page == 1 %}
+              <div class="form-success">
+                {% if blog.moderated? and comment.status != 'published' %}
+                <div class="text-green-600 rounded-md w-full py-1 px-4 bg-green-100 flex items-center space-x-2 mb-2">
+                  <span aria-hidden="true" class="text-lg icon mr-2 icon-alert-circle"></span>
+                  {{ 'blogs.comments.success_moderated' | t }}
+                </div>
+                {% else %}
+                <div class="text-green-600 rounded-md w-full px-4 bg-green-100 flex items-center space-x-2 mb-2">
+                  <span aria-hidden="true" class="text-lg icon mr-2 icon-alert-circle"></span>
+                  {{ 'blogs.comments.success' | t }}
+                </div>
+                {% endif %}
+              </div>
+              {% endif %}
+              {% if number_of_comments > 0 %}
+              <ul class="space-y-8">
+              {% comment %}
+                Display comment from URL parameters if it is waiting moderation
+                We added "comment.id" check to make sure we don't display markup if there are form errors
+              {% endcomment %}
+              {% if comment and comment.status != 'published' and comment.id != blank %}
+              <li id="{{ comment.id }}">
+                <div class="flex items-center space-x-2 leading-tight">
+                  <p class="clr-general-headings heading-sm mb-1 talic">
+                    {{ 'blogs.article.comment_meta_html' | t: author: comment.author }}<span class="clr-general-light-text mx-2 body-sm not-italic">-</span><span class="clr-general-light-text body-sm not-italic">{{ comment.created_at | time_tag: format: 'month_day_year' }}</span>
+                  </p>
+                  </div>
+                  <div class="rte body-md clr-general-text">
+                    {{ comment.content }}
+                  </div>
+              </li>
+              {% endif %}
+              {% for comment in article.comments %}
+              <li id="{{ comment.id }}">
+                <div class="flex items-center space-x-2 leading-tight">
+                <p class="clr-general-headings heading-sm mb-1 italic">
+                  {{ 'blogs.article.comment_meta_html' | t: author: comment.author }}<span class="clr-general-light-text mx-2 body-sm not-italic">-</span><span class="clr-general-light-text body-sm not-italic">{{ comment.created_at | time_tag: format: 'month_day_year' }}</span>
+                </p>
+                </div>
+                <div class="rte body-md clr-general-text">
+                  {{ comment.content }}
+                </div>
+              </li>
+              {% endfor %}
             </ul>
+            {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+            {% endif %}
+            {% endif %}
+          </div>
+          {% endpaginate %}
+          {% form 'new_comment', article %}
+          <h3 class="heading-md clr-general-headings">{{ 'blogs.comments.title' | t }}</h3>
+          {% if blog.moderated? %}
+          <p class="body-md clr-general-text mb-6 mt-2 italic">{{ 'blogs.comments.moderated' | t }}</p>
+          {% endif %}
+          {% if form.errors %}
+          <div class="text-red-600 rounded-md w-full py-1 px-4 bg-red-100 flex items-center space-x-2 mb-2">
+            <span aria-hidden="true" class="text-lg icon icon-alert-circle"></span>
+          {{ form.errors | default_errors }}
+          </div>
+          {% endif %}
+          <div class="flex space-x-4 mb-4 leading-none">
+            <div class="w-full">
+              <label class="hidden"  for="CommentAuthor" class="label-hidden">
+                {{ 'blogs.comments.name' | t }}
+              </label>
+              <input type="text"
+                     name="comment[author]"
+                     id="CommentAuthor"
+                     class="input {% if form.errors contains 'author' %}input-error{% endif %}"
+                     placeholder="{{ 'blogs.comments.name' | t }}"
+                     value="{{ form.author }}"
+                     autocapitalize="words">
+            </div>
+            <div class="w-full">
+              <label class="hidden" for="CommentEmail" class="label-hidden">
+                {{ 'blogs.comments.email' | t }}
+              </label>
+              <input type="email"
+                     name="comment[email]"
+                     id="CommentEmail"
+                     class="input {% if form.errors contains 'email' %}input-error{% endif %}"
+                     placeholder="{{ 'blogs.comments.email' | t }}"
+                     value="{{ form.email }}"
+                     spellcheck="false"
+                     autocomplete="off"
+                     autocapitalize="off">
+
+            </div>
+            </div>
+              <label class="hidden" for="CommentBody" class="label-hidden">
+                {{ 'blogs.comments.message' | t }}
+              </label>
+              <textarea
+                name="comment[body]"
+                id="CommentBody"
+                class="textarea {% if form.errors contains 'body' %}input-error{% endif %}"
+                placeholder="{{ 'blogs.comments.message' | t }}">
+                {{- form.body -}}
+              </textarea>
+            <div class="leading-none mt-2">
+              <span class="leading-none clr-general-light-text body-sm">{{ 'blogs.comments.required_field' | t }}</span>
+            </div>
+              <input type="submit" class="appearance-none btn-lg btn-primary mt-6" value="{{ 'blogs.comments.post' | t }}">
+            {% endform %}
+        
+          {% endif %}
+
+          </div>
         </div>
     </div>
 </div>
@@ -98,6 +247,12 @@
         "type": "checkbox",
         "id": "blog_show_date",
         "label": "Show date",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_tags",
+        "label": "Show tags",
         "default": true
       },
       {
