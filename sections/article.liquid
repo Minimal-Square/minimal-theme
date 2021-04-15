@@ -99,129 +99,107 @@
                     {% endif %}
                 </div>
             {% endif %}
-          <div class="mt-12">
-            {% if blog.comments_enabled? %}
-            {% if article.comments_count > 0 %}
-            <h3 class="heading-md clr-general-headings mb-4">{{ 'blogs.comments.title_comments' | t }}</h3>
-            {% endif %}
-            {% paginate article.comments by 5 %}
-            <div class="mb-12" id="comments">
-              {% if comment and comment.status and comment.id != blank and paginate.current_page == 1 %}
-              <div class="form-success">
-                {% if blog.moderated? and comment.status != 'published' %}
-                <div class="text-green-600 rounded-md w-full py-1 px-4 bg-green-100 flex items-center space-x-2 mb-2">
-                  <span aria-hidden="true" class="text-lg icon mr-2 icon-alert-circle"></span>
-                  {{ 'blogs.comments.success_moderated' | t }}
+            <div class="mt-12">
+              {% if blog.comments_enabled? %}
+              {% if article.comments_count > 0 %}
+                <h3 class="heading-md clr-general-headings mb-4">{{ 'blogs.comments.title_comments' | t }}</h3>
+              {% endif %}
+              {% paginate article.comments by 5 %}
+                <div class="mb-12" id="comments">
+                  {% if comment and comment.status and comment.id != blank and paginate.current_page == 1 %}
+                    <div class="form-success">
+                      {% if blog.moderated? and comment.status != 'published' %}
+                        <div class="text-green-600 rounded-md w-full py-1 px-4 bg-green-100 flex items-center space-x-2 mb-2">
+                          <span aria-hidden="true" class="text-lg icon mr-2 icon-alert-circle"></span>
+                          {{ 'blogs.comments.success_moderated' | t }}
+                        </div>
+                      {% else %}
+                        <div class="text-green-600 rounded-md w-full px-4 bg-green-100 flex items-center space-x-2 mb-2">
+                          <span aria-hidden="true" class="text-lg icon mr-2 icon-alert-circle"></span>
+                          {{ 'blogs.comments.success' | t }}
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                  {% if number_of_comments > 0 %}
+                    <ul class="space-y-8">
+                      {% comment %}
+                      Display comment from URL parameters if it is waiting moderation
+                      We added "comment.id" check to make sure we don't display markup if there are form errors
+                      {% endcomment %}
+                      {% if comment and comment.status != 'published' and comment.id != blank %}
+                        <li id="{{ comment.id }}">
+                          <div class="flex items-center space-x-2 leading-tight">
+                            <p class="clr-general-headings heading-sm mb-1 talic">
+                              {{ 'blogs.article.comment_meta_html' | t: author: comment.author }}<span class="clr-general-light-text mx-2 body-sm not-italic">-</span><span class="clr-general-light-text body-sm not-italic">{{ comment.created_at | time_tag: format: 'month_day_year' }}</span>
+                            </p>
+                          </div>
+                          <div class="rte body-md clr-general-text">
+                            {{ comment.content }}
+                          </div>
+                        </li>
+                      {% endif %}
+                      {% for comment in article.comments %}
+                      <li id="{{ comment.id }}">
+                        <div class="flex items-center space-x-2 leading-tight">
+                          <p class="clr-general-headings heading-sm mb-1 italic">
+                            {{ 'blogs.article.comment_meta_html' | t: author: comment.author }}<span class="clr-general-light-text mx-2 body-sm not-italic">-</span><span class="clr-general-light-text body-sm not-italic">{{ comment.created_at | time_tag: format: 'month_day_year' }}</span>
+                          </p>
+                        </div>
+                        <div class="rte body-md clr-general-text">
+                          {{ comment.content }}
+                        </div>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  {% if paginate.pages > 1 %}
+                  {% include 'pagination' %}
+                  {% endif %}
+                  {% endif %}
                 </div>
-                {% else %}
-                <div class="text-green-600 rounded-md w-full px-4 bg-green-100 flex items-center space-x-2 mb-2">
-                  <span aria-hidden="true" class="text-lg icon mr-2 icon-alert-circle"></span>
-                  {{ 'blogs.comments.success' | t }}
+                {% endpaginate %}
+                {% form 'new_comment', article %}
+                <h3 class="heading-md clr-general-headings">{{ 'blogs.comments.title' | t }}</h3>
+                {% if blog.moderated? %}
+                <p class="body-md clr-general-text mb-6 mt-2 italic">{{ 'blogs.comments.moderated' | t }}</p>
+                {% endif %}
+                {% if form.errors %}
+                <div class="text-red-600 rounded-md w-full py-1 px-4 bg-red-100 flex items-center space-x-2 mb-2">
+                  <span aria-hidden="true" class="text-lg icon icon-alert-circle"></span>
+                  {{ form.errors | default_errors }}
                 </div>
                 {% endif %}
+                <div class="flex space-x-4 mb-4 leading-none">
+                  <div class="w-full">
+                    <label class="hidden"  for="CommentAuthor" class="label-hidden">
+                      {{ 'blogs.comments.name' | t }}
+                    </label>
+                    <input type="text" name="comment[author]" id="CommentAuthor" class="input {% if form.errors contains 'author' %}input-error{% endif %}" placeholder="{{ 'blogs.comments.name' | t }}" value="{{ form.author }}" autocapitalize="words">
+                  </div>
+                  <div class="w-full">
+                    <label class="hidden" for="CommentEmail" class="label-hidden">
+                      {{ 'blogs.comments.email' | t }}
+                    </label>
+                    <input type="email" name="comment[email]" id="CommentEmail" class="input {% if form.errors contains 'email' %}input-error{% endif %}" placeholder="{{ 'blogs.comments.email' | t }}" value="{{ form.email }}" spellcheck="false" autocomplete="off" autocapitalize="off">
+                  </div>
+                </div>
+                <label class="hidden" for="CommentBody" class="label-hidden">
+                  {{ 'blogs.comments.message' | t }}
+                </label>
+                <textarea name="comment[body]" id="CommentBody" class="textarea {% if form.errors contains 'body' %}input-error{% endif %}" placeholder="{{ 'blogs.comments.message' | t }}"> {{- form.body -}}
+                </textarea>
+                <div class="leading-none mt-2">
+                  <span class="leading-none clr-general-light-text body-sm">{{ 'blogs.comments.required_field' | t }}</span>
+                </div>
+                <input type="submit" class="appearance-none btn-lg btn-primary mt-6" value="{{ 'blogs.comments.post' | t }}">
+                {% endform %}
+                {% endif %}
               </div>
-              {% endif %}
-              {% if number_of_comments > 0 %}
-              <ul class="space-y-8">
-              {% comment %}
-                Display comment from URL parameters if it is waiting moderation
-                We added "comment.id" check to make sure we don't display markup if there are form errors
-              {% endcomment %}
-              {% if comment and comment.status != 'published' and comment.id != blank %}
-              <li id="{{ comment.id }}">
-                <div class="flex items-center space-x-2 leading-tight">
-                  <p class="clr-general-headings heading-sm mb-1 talic">
-                    {{ 'blogs.article.comment_meta_html' | t: author: comment.author }}<span class="clr-general-light-text mx-2 body-sm not-italic">-</span><span class="clr-general-light-text body-sm not-italic">{{ comment.created_at | time_tag: format: 'month_day_year' }}</span>
-                  </p>
-                  </div>
-                  <div class="rte body-md clr-general-text">
-                    {{ comment.content }}
-                  </div>
-              </li>
-              {% endif %}
-              {% for comment in article.comments %}
-              <li id="{{ comment.id }}">
-                <div class="flex items-center space-x-2 leading-tight">
-                <p class="clr-general-headings heading-sm mb-1 italic">
-                  {{ 'blogs.article.comment_meta_html' | t: author: comment.author }}<span class="clr-general-light-text mx-2 body-sm not-italic">-</span><span class="clr-general-light-text body-sm not-italic">{{ comment.created_at | time_tag: format: 'month_day_year' }}</span>
-                </p>
-                </div>
-                <div class="rte body-md clr-general-text">
-                  {{ comment.content }}
-                </div>
-              </li>
-              {% endfor %}
-            </ul>
-            {% if paginate.pages > 1 %}
-            {% include 'pagination' %}
-            {% endif %}
-            {% endif %}
-          </div>
-          {% endpaginate %}
-          {% form 'new_comment', article %}
-          <h3 class="heading-md clr-general-headings">{{ 'blogs.comments.title' | t }}</h3>
-          {% if blog.moderated? %}
-          <p class="body-md clr-general-text mb-6 mt-2 italic">{{ 'blogs.comments.moderated' | t }}</p>
-          {% endif %}
-          {% if form.errors %}
-          <div class="text-red-600 rounded-md w-full py-1 px-4 bg-red-100 flex items-center space-x-2 mb-2">
-            <span aria-hidden="true" class="text-lg icon icon-alert-circle"></span>
-          {{ form.errors | default_errors }}
-          </div>
-          {% endif %}
-          <div class="flex space-x-4 mb-4 leading-none">
-            <div class="w-full">
-              <label class="hidden"  for="CommentAuthor" class="label-hidden">
-                {{ 'blogs.comments.name' | t }}
-              </label>
-              <input type="text"
-                     name="comment[author]"
-                     id="CommentAuthor"
-                     class="input {% if form.errors contains 'author' %}input-error{% endif %}"
-                     placeholder="{{ 'blogs.comments.name' | t }}"
-                     value="{{ form.author }}"
-                     autocapitalize="words">
             </div>
-            <div class="w-full">
-              <label class="hidden" for="CommentEmail" class="label-hidden">
-                {{ 'blogs.comments.email' | t }}
-              </label>
-              <input type="email"
-                     name="comment[email]"
-                     id="CommentEmail"
-                     class="input {% if form.errors contains 'email' %}input-error{% endif %}"
-                     placeholder="{{ 'blogs.comments.email' | t }}"
-                     value="{{ form.email }}"
-                     spellcheck="false"
-                     autocomplete="off"
-                     autocapitalize="off">
-
-            </div>
-            </div>
-              <label class="hidden" for="CommentBody" class="label-hidden">
-                {{ 'blogs.comments.message' | t }}
-              </label>
-              <textarea
-                name="comment[body]"
-                id="CommentBody"
-                class="textarea {% if form.errors contains 'body' %}input-error{% endif %}"
-                placeholder="{{ 'blogs.comments.message' | t }}">
-                {{- form.body -}}
-              </textarea>
-            <div class="leading-none mt-2">
-              <span class="leading-none clr-general-light-text body-sm">{{ 'blogs.comments.required_field' | t }}</span>
-            </div>
-              <input type="submit" class="appearance-none btn-lg btn-primary mt-6" value="{{ 'blogs.comments.post' | t }}">
-            {% endform %}
-        
-          {% endif %}
-
           </div>
         </div>
-    </div>
-</div>
-</div>
-</article>
+      </div>
+    </article>
   
 
 <style>
