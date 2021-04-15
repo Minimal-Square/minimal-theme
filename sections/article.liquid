@@ -174,19 +174,19 @@
                     <label class="hidden"  for="CommentAuthor" class="label-hidden">
                       {{ 'blogs.comments.name' | t }}
                     </label>
-                    <input type="text" name="comment[author]" id="CommentAuthor" class="input {% if form.errors contains 'author' %}input-error{% endif %}" placeholder="{{ 'blogs.comments.name' | t }}" value="{{ form.author }}" autocapitalize="words">
+                    <input type="text" name="comment[author]" id="CommentAuthor" class="input appearance-none {% if form.errors contains 'author' %}input-error{% endif %}" placeholder="{{ 'blogs.comments.name' | t }}" value="{{ form.author }}" autocapitalize="words">
                   </div>
                   <div class="w-full">
                     <label class="hidden" for="CommentEmail" class="label-hidden">
                       {{ 'blogs.comments.email' | t }}
                     </label>
-                    <input type="email" name="comment[email]" id="CommentEmail" class="input {% if form.errors contains 'email' %}input-error{% endif %}" placeholder="{{ 'blogs.comments.email' | t }}" value="{{ form.email }}" spellcheck="false" autocomplete="off" autocapitalize="off">
+                    <input type="email" name="comment[email]" id="CommentEmail" class="input appearance-none {% if form.errors contains 'email' %}input-error{% endif %}" placeholder="{{ 'blogs.comments.email' | t }}" value="{{ form.email }}" spellcheck="false" autocomplete="off" autocapitalize="off">
                   </div>
                 </div>
                 <label class="hidden" for="CommentBody" class="label-hidden">
                   {{ 'blogs.comments.message' | t }}
                 </label>
-                <textarea name="comment[body]" id="CommentBody" class="textarea {% if form.errors contains 'body' %}input-error{% endif %}" placeholder="{{ 'blogs.comments.message' | t }}"> {{- form.body -}}
+                <textarea name="comment[body]" id="CommentBody" class="textarea appearance-none {% if form.errors contains 'body' %}input-error{% endif %}" placeholder="{{ 'blogs.comments.message' | t }}"> {{- form.body -}}
                 </textarea>
                 <div class="leading-none mt-2">
                   <span class="leading-none clr-general-light-text body-sm">{{ 'blogs.comments.required_field' | t }}</span>
