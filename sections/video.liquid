@@ -1,13 +1,14 @@
-<h2 class="heading-sm clr-general-headings mb-4 text-center">{{ section.settings.collection_title }}</h2>
+<h2 class="heading-sm clr-general-headings mb-4 text-center">{{ section.settings.collection_heading }}</h2>
 
-<div class="max-width mx-auto h-144 w-full flex justify-center items-center relative"​​​​​​>
-    <a class="cursor-pointer flex justify-center items-center h-full w-full z-20 relative" href="" id="play-video">
-        <img src="{{ section.settings.video | img_url: 'master' }}" class="absolute h-full w-full object-cover object-center" alt="">
+<div class="max-width mx-auto w-full flex justify-center items-center relative"​​​​​​>
+    <div class="relative w-full {% if section.settings.video_aspect == '16-9' %} aspect-w-16 aspect-h-9 {% elsif section.settings.video_aspect == '21-9' %} aspect-w-21 aspect-h-9 {% endif %}">
+    <a class="cursor-pointer flex justify-center items-center h-full w-full z-20" href="" id="play-video">
+        <img src="{{ section.settings.video_thumbnail | img_url: 'master' }}" class="absolute h-full w-full object-cover object-center" alt="">
         <div class="bg-white h-20 w-20 flex justify-center items-center rounded-full z-30">
             <span aria-hidden="true" class="text-3xl icon icon-play-circle"></span>
         </div>
     </a> 
-
+    </div>
     <div class="absolute w-full h-full" style="max-width: {{ settings.layout_max_width }}px;" id="player"></div>
 </div>
 
@@ -37,14 +38,29 @@
     "settings": [
       {
           "type": "text",
-          "id": "collection_title",
-          "label": "Section title",
+          "id": "collection_heading",
+          "label": "Heading",
           "default": "Designs the whole family can enjoy"
       },
       {
           "type": "image_picker",
-          "id": "video",
+          "id": "video_thumbnail",
           "label": "Thumbnail"
+      },
+      {
+          "type": "select",
+          "id": "video_aspect",
+          "label": "Aspect ratio",
+          "options": [
+            {
+                "value": "16-9",
+                "label": "16:9"
+            },
+            {
+                "value": "21-9",
+                "label": "21:9"
+            }
+          ]
       },
       {
         "type": "text",

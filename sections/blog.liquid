@@ -30,10 +30,10 @@
                         <div class="p-4">
                             <div class="flex space-x-2">
                                 {%- if section.settings.blog_date -%}
-                                        <span class="clr-general-light-text body-sm">{{ article.published_at | time_tag: format: 'month_day_year' }}</span>
+                                        <span class="clr-general-light-text leading-none body-sm">{{ article.published_at | time_tag: format: 'month_day_year' }}</span>
                                 {%- endif -%}
                                 {%- if section.settings.blog_author -%}
-                                        <span class="clr-general-light-text body-sm border-1 pl-2">{{ article.author }}</span>
+                                        <span class="clr-general-light-text leading-none body-sm border-1 pl-2">{{ article.author }}</span>
                                 {%- endif -%}
                             </div>
                             <a href="{{ article.url }}">
@@ -46,7 +46,7 @@
                                     {{ article.content | strip_html | truncate: 150 }}
                                 </p>
                             {%- endif -%}
-                            <a class="clr-general-links" href="{{ article.url }}" aria-label="Read more: {{ article.title }}">{{ 'blogs.article.read_more' | t }}<span aria-hidden="true" class="text-xl self-center icon icon-chevron-right"></span></a>
+                            <a class="clr-general-links flex" href="{{ article.url }}" aria-label="Read more: {{ article.title }}">{{ 'blogs.article.read_more' | t }}<span aria-hidden="true" class="text-xl self-center icon icon-chevron-right"></span></a>
                         </div> 
                     </div>
                 </div>   
