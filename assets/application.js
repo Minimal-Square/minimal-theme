@@ -79,3 +79,26 @@ $(function(){
     });
 });
 
+//Cookie ---------------------------
+var myCookie = Cookies.get('minimal');
+
+if(!myCookie) {
+  $('.cookie').toggleClass('hidden');
+}
+
+$(function(){
+  $('.acceptCookie').click(function(e){
+    e.preventDefault();
+    Cookies.set('minimal', 'true', { expires: 7 });
+    $('.cookie').animate({height: "0px"}, 300, function() {
+      $('.cookie').toggleClass('hidden');
+    });
+  });
+
+  $('.closeCookie').click(function(e){
+    e.preventDefault();
+    $('.cookie').animate({height: "0px"}, 300, function() {
+      $('.cookie').toggleClass('hidden');
+    });
+  });
+});

@@ -178,6 +178,44 @@
     ]
   },
   {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "work_sans_n6"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "work_sans_n4"
+      },
+      {
+        "type": "range",
+        "id": "base_font_size",
+        "label": "Base font size",
+        "min": 14,
+        "max": 18,
+        "step": 1,
+        "default": 16,
+        "unit": "px"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
     "name": "Social media",
     "settings": [
       {
@@ -257,33 +295,6 @@
     ]
   },
   {
-    "name": "Typography",
-    "settings": [
-      {
-        "type": "font_picker",
-        "id": "font_heading",
-        "label": "Heading font",
-        "default": "work_sans_n6"
-      },
-      {
-        "type": "font_picker",
-        "id": "font_body",
-        "label": "Body font",
-        "default": "work_sans_n4"
-      },
-      {
-        "type": "range",
-        "id": "base_font_size",
-        "label": "Base font size",
-        "min": 14,
-        "max": 18,
-        "step": 1,
-        "default": 16,
-        "unit": "px"
-      }
-    ]
-  },
-  {
     "name": "Layout",
     "settings": [
       {
@@ -295,6 +306,52 @@
         "step": 100,
         "default": 1500,
         "unit": "px"
+      }
+    ]
+  },
+  {
+    "name": "Cookie",
+    "settings": [
+      {
+        "type": "text",
+        "id": "cookie_heading",
+        "label": "Heading",
+        "default": "This is a cookie heading"
+      },
+      {
+        "type": "color",
+        "id": "cookie_heading_color",
+        "label": "Heading color",
+        "default": "#000000"
+      },
+      {
+        "type": "text",
+        "id": "cookie_text",
+        "label": "Text",
+        "default": "Proactively exploit resource-leveling intellectual capital through user friendly imperatives. Phosfluorescently actualize technically sound platforms with."
+      },
+      {
+        "type": "color",
+        "id": "cookie_text_color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+      {
+        "type": "text",
+        "id": "cookie_link_text",
+        "label": "Link text",
+        "default": "Cookie policy"
+      },
+      {
+        "type": "color",
+        "id": "cookie_background_color",
+        "label": "Background color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "url",
+        "id": "cookie_policy_url",
+        "label": "Cookie policy URL"
       }
     ]
   }
