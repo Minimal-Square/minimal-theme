@@ -168,6 +168,7 @@
       "update": "Update Address",
       "cancel": "Cancel",
       "edit": "Edit",
+      "you_currently_dont_have_an_address": "You currently don't have an address.",
       "delete": "Delete"
     },
     "login": {

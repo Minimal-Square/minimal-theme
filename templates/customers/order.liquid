@@ -1,32 +1,112 @@
-<!-- /templates/customers/order.liquid -->
+<div class="max-w-6xl mx-auto px-4 2xl:px-0">
+  <div class="py-12 sm:py-16 flex justify-between items-center">
+    <h1 class="text-2xl sm:text-4xl font-serif">{{ 'customer.account.title' | t }}</h1>
+    <div>
+      <a class="flex space-x-2" href="/account">
+        <p class="underline">{{ 'customer.account.return' | t }}</p>
+      </a>
+    </div>
+  </div>
 
-<h2>Billing Address</h2>
-<p><span>Payment Status:</span> <span class="status_{{ order.financial_status }}">{{ order.financial_status }}</span></p>
-<p>{{ order.billing_address.name }}</p>
-<p>{{ order.billing_address.company }}</p>
-<p>{{ order.billing_address.street }}</p>
-<p>{{ order.billing_address.city }}, {{ order.billing_address.province }}</p>
-<p>{{ order.billing_address.country }} {{ order.billing_address.zip }}</p>
-<p>{{ order.billing_address.phone }}</p>
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-16">
+    <div class="sm:col-span-2">
+      <div class="mb-2">
+        <h3 class="text-lg font-serif">{{ 'customer.order.title' | t: name: order.name }}</h3>
+        <p class="text-sm">{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</p>
+      </div>
+      <div class="border rounded-md px-4 text-sm"><!-- Start of Order history box -->
+        <div class="hidden lg:grid lg:grid-cols-5 font-semibold border-b py-4">
+          <p>{{ 'customer.order.product' | t }}</p>
+          <p>{{ 'customer.order.sku' | t }}</p>
+          <p>{{ 'customer.order.price' | t }}</p>
+          <p>{{ 'customer.order.quantity' | t }}</p>
+          <p class="lg:text-right">{{ 'customer.order.total' | t }}</p>
+        </div>
+        <div class="divide-y border-b">
+          <div class="grid grid-cols-2 lg:grid-cols-1 lg:my-0">
+            <div class="lg:hidden font-semibold py-4">
+              <p class="lg:hidden">{{ 'customer.order.product' | t }}</p>
+              <p class="lg:hidden">{{ 'customer.order.sku' | t }}</p>
+              <p class="lg:hidden">{{ 'customer.order.price' | t }}</p>
+              <p class="lg:hidden">{{ 'customer.order.quantity' | t }}</p>
+              <p class="lg:text-right lg:hidden">{{ 'customer.order.total' | t }}</p>
+            </div>
+            <div class="lg:grid lg:grid-cols-5 text-right py-4 lg:text-left">
+              {% for line_item in order.line_items %}
+              <p>{{ line_item.title | link_to: line_item.product.url }}</p>
+              <p>{{ line_item.sku }}</p>
+              <p>{{ line_item.price | money }}</p>
+              <p class="lg:text-left">{{ line_item.quantity }}</p>
+              <p class="lg:text-right">{{ line_item.quantity | times: line_item.price | money }}</p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1">
+          <div class="lg:divide-y py-4 lg:py-0">
 
-<h2>Shipping Address</h2>
-<p><span>Fulfillment Status:</span><span class="status_{{ order.fulfillment_status }}">{{ order.fulfillment_status }}</span></p>
-<p>{{ order.shipping_address.name }}</p>
-<p>{{ order.shipping_address.company }}</p>
-<p>{{ order.shipping_address.street }}</p>
-<p>{{ order.shipping_address.city }}, {{ order.shipping_address.province }}</p>
-<p>{{ order.shipping_address.country }} {{ order.shipping_address.zip }}</p>
-<p>{{ order.shipping_address.phone }}</p>
+            <div class="flex justify-between lg:py-4">
+              <p class="font-semibold">{{ 'customer.order.subtotal' | t }}</p>
+              <p>{{ order.line_items_subtotal_price | money }}</p>
+            </div>
 
-<h2>Order Items</h2>
-<table>
-  {% for line_item in order.line_items %}
-  <tr>
-    <td>{{ line_item.title | link_to: line_item.product.url }}</td>
-    <td>{{ line_item.sku }}</td>
-    <td>{{ line_item.original_price | money }}</td>
-    <td>{{ line_item.quantity }}</td>
-    <td>{{ line_item.line_price | money }}</td>
-  </tr>
-  {% endfor %}
-</table>
+            {% for discount in order.discounts %}
+            <div class="flex justify-between lg:py-4">
+              <p class="font-semibold">{{ discount.code }} {{ 'customer.order.discount' | t }}</p>
+              <p>{{ discount.savings | money }}</p>
+            </div>
+            {% endfor %}
+
+            {% for shipping_method in order.shipping_methods %}
+            <div class="flex justify-between lg:py-4">
+              <p class="font-semibold">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</p>
+              <p>{{ shipping_method.price | money }}</p>
+            </div>
+            {% endfor %}
+
+            {% for tax_line in order.tax_lines %}
+            <div class="flex justify-between lg:py-4">
+              <p class="font-semibold">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</p>
+              <p>{{ tax_line.price | money }}</p>
+            </div>
+            {% endfor %}
+
+            <div class="flex justify-between lg:py-4">
+              <p class="font-semibold">{{ 'customer.order.total' | t }}</p>
+              <p>{{ order.total_price | money }} {{ order.currency }}</p>
+            </div>
+          </div>
+        </div>
+        
+      </div><!-- End of Order history box -->
+    </div>
+
+    <div>
+      <div class="order-first sm:order-none mt-5">
+        <div class="mb-2">
+          <h3 class="text-lg font-serif">{{ 'customer.order.billing_address' | t }}</h3>
+        </div>
+        <div class="border rounded-md p-4 space-y-4 text-sm">
+          <div>
+            <p><span class="font-medium mr-1">{{ 'customer.order.payment_status' | t }}:</span>{{ order.financial_status_label }}</p>
+          </div>
+          {{ order.billing_address | format_address }}
+        </div>
+      </div>
+      <div class="order-first sm:order-none mt-5">
+        <div class="mb-2">
+          <h3 class="text-lg font-serif">{{ 'customer.order.shipping_address' | t }}</h3>
+        </div>
+        <div class="border rounded-md p-4 space-y-4 text-sm">
+          <div>
+            <p><span class="font-medium mr-1">{{ 'customer.order.fulfillment_status' | t }}:</span>{{ order.fulfillment_status_label }}</p>
+          </div>
+          {{ order.shipping_address | format_address }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div>
+</div>
