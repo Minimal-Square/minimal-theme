@@ -1,0 +1,136 @@
+<div class="mb-8">
+    <div class="flex justify-between items-center mb-2">
+      <h5 class="text-sm">Wool Sneakers</h5>
+      <h4 class="text-lg" id="price">{{ product.selected_or_first_available_variant.price | money }}</h4>
+    </div>
+    <h2 class="text-2xl font-bold">{{ product.title }}</h2>
+  </div>
+
+  <form method="post" action="/cart/add" id="product_form" data-cart-submit>
+    <!-- Variants -->
+    {% if product.variants.size > 1 %}
+      {% if product.options[0] %}
+        <div class="product_variant_container">
+          {% if product.options[0] == 'Color' %}
+            <div class="mb-8">
+              <div class="mb-4"><h5 class="text-sm uppercase">{{ product.options[0] }}</h5></div>
+              <div class="flex space-x-2">
+                {% assign used = '' %}
+                {% for variant in product.variants %}
+                {% unless used contains variant.option1 %}
+                <div class="w-16 h-16 flex items-center justify-center">
+                  <input type="radio" name="color" value="{{ variant.option1 }}" data-id="{{ variant.id }}" id="color-{{ variant.id }}" onclick="updateProductInformation()" class="absolute z-0">
+                  <label for="color-{{ variant.id }}" class="w-full h-full flex items-center justify-center cursor-pointer bg-gray-300 hover:bg-black transition-colors ease-in-out rounded-md label" style="z-index: 5;"></label>
+                 
+                  {% capture used %}{{ used }} {{ variant.option1 }}{% endcapture %}
+                </div>
+                {% endunless %}
+              {% endfor %}
+              </div>
+            </div>
+          {% else %}
+            {% assign used = '' %}
+            <label for="select_one"><h3 class="font_medium">{{ product.options[0] }}</h3></label>
+            <div class="trago_select_container">
+              <select id='select_one' onchange="updateProductInformation()">
+                {% for variant in product.variants %}
+                  {% unless used contains variant.option1 %}
+                    <option value="{{ variant.option1 }}">{{ variant.option1 }}</option>
+                    {% capture used %}{{ used }} {{ variant.option1 }}{% endcapture %}
+                  {% endunless %}
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="product_variant_container">
+        {% if product.options[1] == 'Size' %}
+            <div class="mb-8">
+              <div class="mb-4"><h5 class="text-sm uppercase">{{ product.options[1] }}</h5></div>
+              <div class="flex space-x-2">
+                {% assign used = '' %}
+                {% for variant in product.variants %}
+                {% unless used contains variant.option2 %}
+                <div class="w-16 h-16 flex justify-center align-middle items-center text-center relative">
+                  <input type="radio" name="size" value="{{ variant.option2 }}" data-id="{{ variant.id }}" id="size-{{ variant.id }}" onclick="updateProductInformation()" class="absolute z-0">
+                  <label for="size-{{ variant.id }}" class="w-full h-full flex items-center justify-center bg-white rounded-md cursor-pointer label" style="z-index: 5;">{{ variant.option2 }}</label>
+                  
+                  {% capture used %}{{ used }} {{ variant.option2 }}{% endcapture %}
+                </div>
+                {% endunless %}
+              {% endfor %}
+              </div>
+            </div>
+          {% else %}
+            {% assign used = '' %}
+            <label for="select_two"><h3 class="font_medium">{{ product.options[1] }}</h3></label>
+            <div class="trago_select_container">
+              <select id='select_two' onchange="updateProductInformation()">
+                {% for variant in product.variants %}
+                  {% unless used contains variant.option2%}
+                    <option value="{{ variant.option2 }}">{{ variant.option2 }}</option>
+                    {% capture used %}{{ used }} {{ variant.option2 }}{% endcapture %}
+                  {% endunless %}
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+      </div>
+      {% if product.options[2] %}
+      <div class="product_variant_container">
+        {% if product.options[2] == 'Material' %}
+            <div class="mb-8">
+              <div class="mb-4"><h5 class="text-sm uppercase">{{ product.options[2] }}</h5></div>
+              <div class="flex space-x-2">
+                {% assign used = '' %}
+                {% for variant in product.variants %}
+                {% unless used contains variant.option3 %}
+                <div class="w-16 h-16 flex justify-center align-middle items-center text-center relative">
+                  <input type="radio" name="material" value="{{ variant.option3 }}" data-id="{{ variant.id }}" id="material-{{ variant.id }}" onclick="updateProductInformation()" class="absolute z-0">
+                  <label for="material-{{ variant.id }}" class="w-full h-full flex items-center justify-center bg-white rounded-md cursor-pointer label" style="z-index: 5;">{{ variant.option3 }}</label>
+                  
+                  {% capture used %}{{ used }} {{ variant.option3 }}{% endcapture %}
+                </div>
+                {% endunless %}
+              {% endfor %}
+              </div>
+            </div>
+          {% else %}
+            {% assign used = '' %}
+            <label for="select_three"><h3 class="font_medium">{{ product.options[2] }}</h3></label>
+            <div class="trago_select_container">
+              <select id='select_three' onchange="updateProductInformation()">
+                {% for variant in product.variants %}
+                  {% unless used contains variant.option3%}
+                    <option value="{{ variant.option3 }}">{{ variant.option3 }}</option>
+                    {% capture used %}{{ used }} {{ variant.option3 }}{% endcapture %}
+                  {% endunless %}
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+      </div>
+      {% endif %}
+    {% endif %}
+
+    <!-- Quantity -->
+    <div class="product_variant_container">
+      <label for="quantity"><h3 class="text-md">Quantity</h3></label>
+      <div class="quantity_input_container">
+        <input min="1" type="number" id="quantity" name="quantity" onchange="updateProductInformation()" value="1" />
+      </div>
+    </div>
+
+    <!-- Price -->
+    <!-- <h2 class="text_blue font_medium product_price" id="product_price">{{ product.selected_or_first_available_variant.price | money }}</h2> -->
+    <!-- Add To Cart -->
+    <input type="submit" name="add" id="add_to_cart" data-cart-add="{{ product.variants.first.id }}" class="w-full rounded-md button-primary button-primary-label py-4 mb-8 addtocart cursor-pointer" value="Add To Cart">
+    <!-- Ajax Message -->
+    <p class="ajax_message"></p>
+  </form>
+  {{ "jquery.js" | asset_url | script_tag }} 
+  
+  <div class="mb-8 md:mb-16">
+    <p>{{ product.description }}</p>
+  </div>
