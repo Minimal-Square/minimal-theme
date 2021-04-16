@@ -216,6 +216,33 @@
     ]
   },
   {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "default": "cart_type_drawer",
+        "options": [
+          {
+            "value": "cart_type_drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "cart_type_page",
+            "label": "Page"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable notes",
+        "default": true
+      }
+    ]
+  },
+  {
     "name": "Social media",
     "settings": [
       {
