@@ -14,10 +14,10 @@
     </div>
 
     {% form 'customer_address', customer.new_address %}
-        <div class="bg-black bg-opacity-15 fixed inset-0 z-50 overflow-auto flex" id="AddAddress" {% unless form.errors %} style="display:none;" {% endunless %}>
+        <div class="bg-black bg-opacity-10 fixed inset-0 z-50 overflow-auto flex" id="AddAddress" {% unless form.errors %} style="display:none;" {% endunless %}>
             <div class="bg-white relative w-full sm:max-w-4xl m-auto px-6 sm:px-12 py-12">
                 <div class="flex items-center justify-between mb-12">
-                    <h2 class="text-xl font-serif font-semibold ">{{ 'customer.addresses.add_new' | t }}</h2>
+                    <h2 class="heading-sm clr-general-headings">{{ 'customer.addresses.add_new' | t }}</h2>
                     <div class="cursor-pointer" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">
                         <span aria-hidden="true" class="text-3xl icon icon-x"></span>
                     </div>
@@ -31,47 +31,47 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 text-sm gap-5">
                     <div class="block space-y-2">
-                        <label for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }}</label>
-                        <input class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" type="text" id="AddressFirstNameNew" class="input-full" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words">
+                        <label class="body-sm clr-general-headings" for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }}</label>
+                        <input class="input appearance-none mb-4" type="text" id="AddressFirstNameNew" class="input-full" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words">
                     </div>
                     <div class="block space-y-2">
-                        <label for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }}</label>
-                        <input class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" type="text" id="AddressLastNameNew" class="input-full" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words">
+                        <label class="body-sm clr-general-headings" for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }}</label>
+                        <input class="input appearance-none mb-4" type="text" id="AddressLastNameNew" class="input-full" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words">
                     </div>
                     <div class="block space-y-2">
-                        <label for="AddressCompanyNew">{{ 'customer.addresses.company' | t }}</label>
-                        <input class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" type="text" id="AddressCompanyNew" class="input-full" name="address[company]" value="{{ form.company }}" autocapitalize="words">
+                        <label class="body-sm clr-general-headings" for="AddressCompanyNew">{{ 'customer.addresses.company' | t }}</label>
+                        <input class="input appearance-none mb-4" type="text" id="AddressCompanyNew" class="input-full" name="address[company]" value="{{ form.company }}" autocapitalize="words">
                     </div>
                     <div class="block space-y-2">
-                        <label for="AddressAddress1New">{{ 'customer.addresses.address1' | t }}</label>
-                        <input class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" type="text" id="AddressAddress1New" class="input-full" name="address[address1]" value="{{ form.address1 }}" autocapitalize="words">
+                        <label class="body-sm clr-general-headings" for="AddressAddress1New">{{ 'customer.addresses.address1' | t }}</label>
+                        <input class="input appearance-none mb-4" type="text" id="AddressAddress1New" class="input-full" name="address[address1]" value="{{ form.address1 }}" autocapitalize="words">
                     </div>
                     <div class="block space-y-2">
-                        <label for="AddressAddress2New">{{ 'customer.addresses.address2' | t }}</label>
-                        <input class="border rounded-md w-full py-3 px-4 shadow-sm mb-4type=" text" id=" AddressAddress2New" class=" input-full" name=" address[address2]" value=" {{ form.address2 }} " autocapitalize=" words">
+                        <label class="body-sm clr-general-headings" for="AddressAddress2New">{{ 'customer.addresses.address2' | t }}</label>
+                        <input class="input appearance-none mb-4type=" text" id=" AddressAddress2New" class=" input-full" name=" address[address2]" value=" {{ form.address2 }} " autocapitalize=" words">
                     </div>
                     <div class="block space-y-2">
-                        <label for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label>
-                        <input class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" type="text" id="AddressCityNew" class="input-full" name="address[city]" value="{{ form.city }}" autocapitalize="words">
+                        <label class="body-sm clr-general-headings" for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label>
+                        <input class="input appearance-none mb-4" type="text" id="AddressCityNew" class="input-full" name="address[city]" value="{{ form.city }}" autocapitalize="words">
                     </div>
-                    <div class="block space-y-2">
-                        <label for="AddressCountryNew">{{ 'customer.addresses.country' | t }}</label>
-                        <select class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" id="AddressCountryNew" class="input-full" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select>
+                    <div class="block space-y-2 relative">
+                        <label class="body-sm clr-general-headings" for="AddressCountryNew">{{ 'customer.addresses.country' | t }}</label>
+                        <select class="input appearance-none mb-4" id="AddressCountryNew" class="input-full" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select><span  aria-hidden="false" class="absolute right-3 bottom-4 icon icon-chevron-down" id="AddressCountryNew" class="input-full" name="address[country]" data-default="{{ form.country }}"></span>
 
                     </div>
 
                     <div class="block space-y-2" id="AddressProvinceContainerNew" style="display:none">
-                        <label for="AddressProvinceNew">{{ 'customer.addresses.province' | t }}</label>
-                        <select class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" id="AddressProvinceNew" class="input-full" name="address[province]" data-default="{{ form.province }}"></select>
+                        <label class="body-sm clr-general-headings" for="AddressProvinceNew">{{ 'customer.addresses.province' | t }}</label>
+                        <select class="input appearance-none mb-4" id="AddressProvinceNew" class="input-full" name="address[province]" data-default="{{ form.province }}"></select>
                     </div>
 
                     <div class="block space-y-2">
-                        <label for="AddressZipNew">{{ 'customer.addresses.zip' | t }}</label>
-                        <input class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" type="text" id="AddressZipNew" class="input-full" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters">
+                        <label class="body-sm clr-general-headings" for="AddressZipNew">{{ 'customer.addresses.zip' | t }}</label>
+                        <input class="input appearance-none mb-4" type="text" id="AddressZipNew" class="input-full" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters">
                     </div>
                     <div class="block space-y-2">
-                        <label for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
-                        <input class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" type="tel" id="AddressPhoneNew" class="input-full" name="address[phone]" value="{{ form.phone }}">
+                        <label class="body-sm clr-general-headings" for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
+                        <input class="input appearance-none mb-4" type="tel" id="AddressPhoneNew" class="input-full" name="address[phone]" value="{{ form.phone }}">
                     </div>
 
                 </div>
@@ -83,17 +83,17 @@
                         </p>
                     </div>
                     <div class="flex items-center space-x-8">
-                        <a class="border-b border-gray-400" href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.cancel' | t }}</a>
-                        <input class="border rounded-md w-full py-3 px-4 bg-black text-white" type="submit" value="{{ 'customer.addresses.add' | t }}">
+                        <a class="cursor-pointer text-red-500 body-md" href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.cancel' | t }}</a>
+                        <input class="cursor-pointer appearance-none btn-lg btn-primary w-full" type="submit" value="{{ 'customer.addresses.add' | t }}">
                     </div>
                 </div>
             </div>
         </div>
     {% endform %}
 
-
-    <h2 class="mb-2 text-lg font-serif {% if customer.addresses == blank %} hidden {% endif %}">
+    <h2 class="mb-2 heading-xs clr-general-heading {% if customer.addresses == blank %} hidden {% endif %}">
         {{ 'customer.addresses.default' | t }}
+
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 items-start">
         {% if customer.addresses_count == 0 %}
@@ -105,7 +105,7 @@
             <div class="{% if address == customer.default_address %} order-first {% endif %}">
                 <div class="border rounded-md p-4 space-y-4 text-sm " data-address>
                     <div class="grid grid-cols-1 sm:grid-cols-2  space-y-8">
-                        <div>
+                        <div class="body-sm clr-general-text">
                             {{ address.first_name | capitalize }}
                             {{ address.last_name | capitalize }}
                             {% if address.company != blank %}
@@ -123,7 +123,7 @@
                         </div>
                         <div class="sm:text-right flex sm:self-end sm:justify-end space-x-4">
                             <p class=" text-red-600" href="">{{ 'customer.addresses.delete' | t | delete_customer_address_link: address.id }}</p>
-                            <p class="border-b border-gray-400 whitespace-nowrap" href="">
+                            <p class="clr-general-links whitespace-nowrap" href="">
                                 {{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id }}</p>
                         </div>
                     </div>
@@ -131,10 +131,10 @@
 
                 {% form 'customer_address', address %}
 
-                    <div class="bg-black bg-opacity-15 fixed inset-0 z-50 overflow-auto flex" id="EditAddress_{{ address.id }}" {% unless form.errors %} style="display:none;" {% endunless %}>
+                    <div class="bg-black bg-opacity-10 fixed inset-0 z-50 overflow-auto flex" id="EditAddress_{{ address.id }}" {% unless form.errors %} style="display:none;" {% endunless %}>
                         <div class="bg-white relative w-full sm:max-w-4xl m-auto px-6 sm:px-12 py-12">
                             <div class="flex items-center justify-between mb-12">
-                                <h2 class="text-xl font-serif font-semibold ">{{ 'customer.addresses.edit_address' | t }}</h2>
+                                <h2 class="heading-sm clr-general-headings">{{ 'customer.addresses.edit_address' | t }}</h2>
                                 <div class="cursor-pointer" onclick="Shopify.CustomerAddress.toggleForm({{ form.id }}); return false;">
                                     <span aria-hidden="true" class="text-3xl icon icon-x"></span>
                                 </div>
@@ -149,45 +149,45 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 text-sm gap-5">
 
                                 <div class="block space-y-2">
-                                    <label for="AddressFirstName_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
-                                    <input type="text" id="AddressFirstName_{{ form.id }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words">
+                                    <label class="body-sm clr-general-headings" for="AddressFirstName_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
+                                    <input type="text" id="AddressFirstName_{{ form.id }}" class="input appearance-none mb-4" name="address[first_name]" value="{{ form.first_name }}" autocapitalize="words">
                                 </div>
                                 <div class="block space-y-2">
-                                    <label for="AddressLastName_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
-                                    <input type="text" id="AddressLastName_{{ form.id }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words">
+                                    <label class="body-sm clr-general-headings" for="AddressLastName_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
+                                    <input type="text" id="AddressLastName_{{ form.id }}" class="input appearance-none mb-4" name="address[last_name]" value="{{ form.last_name }}" autocapitalize="words">
                                 </div>
                                 <div class="block space-y-2">
-                                    <label for="AddressCompany_{{ form.id }}">{{ 'customer.addresses.company' | t }}</label>
-                                    <input type="text" id="AddressCompany_{{ form.id }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" name="address[company]" value="{{ form.company }}" autocapitalize="words">
+                                    <label class="body-sm clr-general-headings" for="AddressCompany_{{ form.id }}">{{ 'customer.addresses.company' | t }}</label>
+                                    <input type="text" id="AddressCompany_{{ form.id }}" class="input appearance-none mb-4" name="address[company]" value="{{ form.company }}" autocapitalize="words">
                                 </div>
                                 <div class="block space-y-2">
-                                    <label for="AddressAddress1_{{ form.id }}">{{ 'customer.addresses.address1' | t }}</label>
-                                    <input type="text" id="AddressAddress1_{{ form.id }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" name="address[address1]" value="{{ form.address1 }}" autocapitalize="words">
+                                    <label class="body-sm clr-general-headings" for="AddressAddress1_{{ form.id }}">{{ 'customer.addresses.address1' | t }}</label>
+                                    <input type="text" id="AddressAddress1_{{ form.id }}" class="input appearance-none mb-4" name="address[address1]" value="{{ form.address1 }}" autocapitalize="words">
                                 </div>
                                 <div class="block space-y-2">
-                                    <label for="AddressAddress2_{{ form.id }}">{{ 'customer.addresses.address2' | t }}</label>
-                                    <input type="text" id="AddressAddress2_{{ form.id }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" name="address[address2]" value="{{ form.address2 }}" autocapitalize="words">
+                                    <label class="body-sm clr-general-headings" for="AddressAddress2_{{ form.id }}">{{ 'customer.addresses.address2' | t }}</label>
+                                    <input type="text" id="AddressAddress2_{{ form.id }}" class="input appearance-none mb-4" name="address[address2]" value="{{ form.address2 }}" autocapitalize="words">
                                 </div>
                                 <div class="block space-y-2">
-                                    <label for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
-                                    <input type="text" id="AddressCity_{{ form.id }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" name="address[city]" value="{{ form.city }}" autocapitalize="words">
+                                    <label class="body-sm clr-general-headings" for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
+                                    <input type="text" id="AddressCity_{{ form.id }}" class="input appearance-none mb-4" name="address[city]" value="{{ form.city }}" autocapitalize="words">
                                 </div>
-                                <div class="block space-y-2">
-                                    <label for="AddressCountry_{{ form.id }}">{{ 'customer.addresses.country' | t }}</label>
-                                    <select id="AddressCountry_{{ form.id }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select>
+                                <div class="block space-y-2 relative">
+                                    <label class="body-sm clr-general-headings" for="AddressCountry_{{ form.id }}">{{ 'customer.addresses.country' | t }}</label>
+                                    <select id="AddressCountry_{{ form.id }}" class="input appearance-none mb-4" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select> <span  aria-hidden="false" class="absolute right-3 bottom-4 icon icon-chevron-down" id="AddressCountryNew" class="input-full" name="address[country]" data-default="{{ form.country }}"></span>
                                 </div>
                                 <div id="AddressProvinceContainer_{{ form.id }}" style="display:none">
-                                    <label for="AddressProvince_{{ form.id }}">{{ 'customer.addresses.province' | t }}</label>
-                                    <select id="AddressProvince_{{ form.id }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" name="address[province]" data-default="{{ form.province }}"></select>
+                                    <label class="body-sm clr-general-headings" for="AddressProvince_{{ form.id }}">{{ 'customer.addresses.province' | t }}</label>
+                                    <select id="AddressProvince_{{ form.id }}" class="input appearance-none mb-4" name="address[province]" data-default="{{ form.province }}"></select>
                                 </div>
 
                                 <div class="block space-y-2">
-                                    <label for="AddressZip_{{ form.id }}">{{ 'customer.addresses.zip' | t }}</label>
-                                    <input type="text" id="AddressZip_{{ form.id }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters">
+                                    <label class="body-sm clr-general-headings" for="AddressZip_{{ form.id }}">{{ 'customer.addresses.zip' | t }}</label>
+                                    <input type="text" id="AddressZip_{{ form.id }}" class="input appearance-none mb-4" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters">
                                 </div>
                                 <div class="block space-y-2">
-                                    <label for="AddressPhone_{{ form.id }}">{{ 'customer.addresses.phone' | t }}</label>
-                                    <input type="tel" id="AddressPhone_{{ form.id }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" name="address[phone]" value="{{ form.phone }}">
+                                    <label class="body-sm clr-general-headings" for="AddressPhone_{{ form.id }}">{{ 'customer.addresses.phone' | t }}</label>
+                                    <input type="tel" id="AddressPhone_{{ form.id }}" class="input appearance-none mb-4" name="address[phone]" value="{{ form.phone }}">
                                 </div>
                             </div>
 
@@ -195,12 +195,12 @@
                                 <div>
                                     <p>
                                         {{ form.set_as_default_checkbox }}
-                                        <label class="inline" for="address_default_address_{{ form.id }}">{{ 'customer.addresses.set_default' | t }}</label>
+                                        <label class="inline body-md clr-general-headings" for="address_default_address_{{ form.id }}">{{ 'customer.addresses.set_default' | t }}</label>
                                     </p>
                                 </div>
                                 <div class="flex items-center space-x-8">
-                                    <a class="cursor-pointer border-b border-gray-400" href="#" onclick="Shopify.CustomerAddress.toggleForm({{ form.id }}); return false;">{{ 'customer.addresses.cancel' | t }}</a>
-                                    <input class="cursor-pointer border rounded-md w-full py-3 px-4 bg-black text-white" type="submit" value="{{ 'customer.addresses.update' | t }}">
+                                    <a class="cursor-pointer text-red-500 body-md" href="#" onclick="Shopify.CustomerAddress.toggleForm({{ form.id }}); return false;">{{ 'customer.addresses.cancel' | t }}</a>
+                                    <input class="cursor-pointer appearance-none btn-lg btn-primary w-full" type="submit" value="{{ 'customer.addresses.update' | t }}">
                                 </div>
                             </div>
 
