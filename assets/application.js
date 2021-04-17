@@ -57,18 +57,18 @@ $('.maskVideo').click(function(e){
 
 //Header show after ---------------------------
 
-window.onscroll = function() {myFunction()};
+// window.onscroll = function() {myFunction()};
 
-var header = document.getElementById("header");
-var sticky = header.offsetTop;
+// var header = document.getElementById("header");
+// var sticky = header.offsetTop;
 
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("stickyHeader");
-  } else {
-    header.classList.remove("stickyHeader");
-  }
-}
+// function myFunction() {
+//   if (window.pageYOffset > sticky) {
+//     header.classList.add("stickyHeader");
+//   } else {
+//     header.classList.remove("stickyHeader");
+//   }
+// }
 
 //Video section ---------------------------
 $(function(){
@@ -101,4 +101,48 @@ $(function(){
       $('.cookie').toggleClass('hidden');
     });
   });
+});
+
+//On Product Description click ---------------------------
+$('.clickDropdown').on('click', function(){
+  this.dropdownItem = $(this).siblings('.dropdownItem');
+
+  this.dropdownItem.slideToggle(300);
+  $(this).find('.chevronDesc').toggleClass('rotate');
+}); 
+
+//Sticky add to cart ---------------------------
+$(document).ready(function() {
+  if (window.location.href.indexOf("products") > -1) {
+    
+    jQuery.expr.filters.offscreen = function(el) {
+      var rect = el.getBoundingClientRect();
+      return (
+                (rect.x + rect.width) < 0 
+                  || (rect.y + rect.height) < 0
+                  || (rect.x > window.innerWidth || rect.y > window.innerHeight)
+              );
+    };
+  
+    if ($(window).width() < 960) {
+      $(window).scroll(function() { 
+        if ($(window).scrollTop() >= $('.addtocart2').offset().top + $('.addtocart2').outerHeight() - window.innerHeight) { 
+            
+            $('.bottomMenu').slideDown();
+        } else {
+            $('.bottomMenu').slideUp();
+        }
+      });
+    
+    }
+    else {
+      $(document).scroll(function () {
+        if ($('.addtocart').is(':offscreen')) {
+            $('.bottomMenu').slideDown();
+        } else {
+            $('.bottomMenu').slideUp();
+        }
+    });
+    }
+  }
 });

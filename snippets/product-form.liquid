@@ -19,9 +19,8 @@
                 {% for variant in product.variants %}
                 {% unless used contains variant.option1 %}
                 <div class="w-16 h-16 flex items-center justify-center">
-                  <input type="radio" name="color" value="{{ variant.option1 }}" data-id="{{ variant.id }}" id="color-{{ variant.id }}" onclick="updateProductInformation()" class="absolute z-0">
-                  <label for="color-{{ variant.id }}" class="w-full h-full flex items-center justify-center cursor-pointer bg-gray-300 hover:bg-black transition-colors ease-in-out rounded-md label" style="z-index: 5;"></label>
-                 
+                  <input class="absolute z-0" type="radio" name="color" value="{{ variant.option1 }}" data-id="{{ variant.id }}" id="color-{{ variant.id }}" onclick="updateProductInformation()">
+                  <label for="color-{{ variant.id }}" class="option w-full h-full flex items-center justify-center cursor-pointer focus:ring-4 focus:ring-blue-600 bg-gray-300 hover:bg-black transition-colors ease-in-out rounded-md label" style="z-index: 5;"></label>
                   {% capture used %}{{ used }} {{ variant.option1 }}{% endcapture %}
                 </div>
                 {% endunless %}
@@ -52,9 +51,9 @@
                 {% assign used = '' %}
                 {% for variant in product.variants %}
                 {% unless used contains variant.option2 %}
-                <div class="w-16 h-16 flex justify-center align-middle items-center text-center relative">
-                  <input type="radio" name="size" value="{{ variant.option2 }}" data-id="{{ variant.id }}" id="size-{{ variant.id }}" onclick="updateProductInformation()" class="absolute z-0">
-                  <label for="size-{{ variant.id }}" class="w-full h-full flex items-center justify-center bg-white rounded-md cursor-pointer label" style="z-index: 5;">{{ variant.option2 }}</label>
+                <div class="flex justify-center align-middle items-center text-center relative">
+                  <input class="absolute z-0" type="radio" name="size" value="{{ variant.option2 }}" data-id="{{ variant.id }}" id="size-{{ variant.id }}" onclick="updateProductInformation()">
+                  <label for="size-{{ variant.id }}" class="option w-full flex items-center justify-center bg-white rounded-md cursor-pointer label" style="z-index: 5;">{{ variant.option2 }}</label>
                   
                   {% capture used %}{{ used }} {{ variant.option2 }}{% endcapture %}
                 </div>
@@ -125,7 +124,7 @@
     <!-- Price -->
     <!-- <h2 class="text_blue font_medium product_price" id="product_price">{{ product.selected_or_first_available_variant.price | money }}</h2> -->
     <!-- Add To Cart -->
-    <input type="submit" name="add" id="add_to_cart" data-cart-add="{{ product.variants.first.id }}" class="w-full rounded-md button-primary button-primary-label py-4 mb-8 addtocart cursor-pointer" value="Add To Cart">
+    <input type="submit" name="add" id="add_to_cart" data-cart-add="{{ product.variants.first.id }}" class="btn-lg btn-primary w-full py-4 mb-8 addtocart cursor-pointer" value="Add To Cart">
     <!-- Ajax Message -->
     <p class="ajax_message"></p>
   </form>
