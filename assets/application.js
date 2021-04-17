@@ -146,3 +146,42 @@ $(document).ready(function() {
     }
   }
 });
+
+
+   //Passwork reset click ---------------------------
+   $('#clickResetPass').click(function(){
+    $('#loginForm').hide();
+    $('#resetPass').show();
+  }); 
+
+  // $(document).ready(function(){
+  //   var $form = $('#resetPass form');
+  //   $form.submit(function(){
+  //      $.post($(this).attr('action'), $(this).serialize(), function(response){
+  //       return
+  //      },'json');
+  //      return false;
+  //   });
+  // });
+
+ $('#resetPassForm')
+  .ajaxForm({
+      url : '/account/recover',
+      dataType : 'json',
+      success : function (response) {
+        return
+      },
+      error : function (response) {
+        $('#status').removeClass("invisible").animate({opacity: "1"}, 300).delay(2000).animate({opacity: "0"}, 300, function() {
+          $('#status').addClass("invisible")
+        });
+        console.log("The server says: " + response.status);
+        return
+      }
+  })
+;
+
+  $('#resetPass #cancel').click(function(){
+    $('#resetPass').hide();
+    $('#loginForm').show();
+  }); 

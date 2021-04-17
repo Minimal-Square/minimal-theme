@@ -50,8 +50,10 @@
        
 
         <div id="recover">
-            <h2 class="font-serif text-xl mb-1">{{ 'customer.recover_password.title' | t }}</h2>
-            <p class="mb-4 text-gray-600">{{ 'customer.recover_password.success' | t }}</p>
+         
+            <h2 class="heading-sm clr-general-headings mb-1">{{ 'customer.recover_password.title' | t }}</h2>
+            <p class="mb-4 body-sm clr-general-text">{{ 'customer.recover_password.success' | t }}</p>
+    
 
             {% if form.errors %}
             <div class="text-red-600 rounded-md text-sm w-full py-2 px-4 bg-red-100 flex items-center space-x-2 mb-2">
@@ -59,12 +61,13 @@
                 {{ form.errors | default_errors }}
             </div>
         {% endif %}
-
+        <div class="mb-4">
             <label class="hidden" for="customerEmail">Email Address</label>
-            <input placeholder="{{ 'customer.recover_password.email' | t }}" class="border rounded-md w-full py-3 px-4 shadow-sm mb-4" type="email" name="email" id="customerEmail" autocorrect="off" autocapitalize="off" autocomplete="email">
+            <input placeholder="{{ 'customer.recover_password.email' | t }}" class="input appearance-none" type="email" name="email" id="customerEmail" autocorrect="off" autocapitalize="off" autocomplete="email">
+        </div>
             <div class="flex space-x-4">
-                <input class="border rounded-md w-full py-3 px-4 bg-black text-white mb-4 cursor-pointer" id="submit" type="submit" value="Submit">
-                <input class="border border-black rounded-md w-full py-3 px-4 bg-white text-black mb-4 cursor-pointer" id="cancel" type="button" value="Cancel">
+                <input class="cursor-pointer appearance-none btn-lg btn-primary w-full" id="submit" type="submit" value="Submit">
+                <input class="cursor-pointer appearance-none btn-lg btn-secondary w-full" id="cancel" type="button" value="Cancel">
             </div>
         </div>
 
