@@ -146,3 +146,23 @@ $(document).ready(function() {
     }
   }
 });
+
+//Quick shop modal ---------------------------
+
+$('.jquery-modal').addClass('z-75');
+
+$(function(){
+  $('.jquery-modal .blocker .current').click(function(e){
+    e.preventDefault();
+    $('.maskQuickshop').toggleClass( "invisible" );
+    $('.quickShop').toggle();
+    $('body').css('overflowY', 'hidden');
+  });
+
+  $('.maskQuickshop').click(function(e){
+    e.preventDefault();
+    $('.quickShop').toggle();
+    $('.maskQuickshop').toggleClass( "invisible" );
+    $('body').css('overflowY', 'auto');
+  });
+});
