@@ -120,25 +120,28 @@ data-flickity='{ "imagesLoaded": true,"wrapAround": true
             {% elsif block.settings.slideshow_text_position_horizontal == 'bottom-right' %}
             items-end justify-end text-right 
             {% endif %}
-            absolute px-8 py-12 md:p-12 lg:p-16">
-                <div class="max-w-2xl absolute mx-auto hero_content">
+            absolute px-8 py-12 md:p-12 lg:p-12">
+                <div class="max-w-screen-sm absolute mx-auto hero_content">
                     <h1 class="heading-xl mb-4" style="color: {{ block.settings.slideshow_text_color }}">{{ block.settings.slideshow_heading }}</h1>
                     <h2 class="body-md mb-6" style="color: {{ block.settings.slideshow_text_color }}">{{ block.settings.slideshow_subheading }}</h2>
                     <div class="space-x-2">
+                        {% if block.settings.slideshow_button_text != blank %}
                         <a href="{{ block.settings.slideshow_button_url }}" class="btn-lg 
                         {% if block.settings.slideshow_button_style == 'slideshow_button_style_primary' %}
                         btn-primary
                         {% elsif block.settings.slideshow_button_style == 'slideshow_button_style_secondary' %}
                         btn-secondary
-                        {% endif %}">{{ block.settings.slideshow_button_text }}</a>
-                        {% unless block.settings.slideshow_second_button_text == blank %}
+                        {% endif %}">{{ block.settings.slideshow_button_text }}
+                        </a>
+                        {% endif %}
+                        {% if block.settings.slideshow_second_button_text != blank %}
                             <a href="{{ block.settings.slideshow_second_button_url }}" class="btn-lg
                             {% if block.settings.slideshow_second_button_style == 'slideshow_second_button_style_primary' %}
                             btn-primary
                             {% elsif block.settings.slideshow_second_button_style == 'slideshow_second_button_style_secondary' %}
                             btn-secondary
                             {% endif %}">{{ block.settings.slideshow_second_button_text }}</a>
-                        {% endunless %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
