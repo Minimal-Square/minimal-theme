@@ -17,13 +17,13 @@
                 </div>
               {% endfor %}
           </div>
-          <!-- <div class="nav-carousel carousel">
+          <div class="nav-carousel carousel" data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": false, "pageDots": false, "asNavFor": ".main-carousel" }'>
               {% for media in product.media %}
                 <div class="carousel-cell">
                     <img class="object-cover" src="{{ media | img_url: '500x500'}}" alt="{{ media.alt }}">
                 </div>
               {% endfor %}
-          </div> -->
+          </div>
 
       </div>
       <div class="lg:col-span-2">
@@ -65,6 +65,8 @@
 {% endschema %}
 
 <script>
+
+
     // Function to get the value of the checked radio button in the form.
     function getRadioVal(form, name) {
         var val;
