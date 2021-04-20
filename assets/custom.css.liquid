@@ -79,10 +79,10 @@
 .heading-md { font-size: var(--heading-md); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
 .heading-sm { font-size: var(--heading-sm); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
 .heading-xs { font-size: var(--heading-xs); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
-.body-lg { font-size: var(--body-lg); }
-.body-md { font-size: var(--body-md); }
-.body-sm { font-size: var(--body-sm); }
-.body-xs { font-size: var(--body-xs); }
+.body-lg { font-size: var(--body-lg); font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; font-weight: {{ settings.font_body.weight }}; line-height: 1.5; }
+.body-md { font-size: var(--body-md); font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; font-weight: {{ settings.font_body.weight }}; line-height: 1.5; }
+.body-sm { font-size: var(--body-sm); font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; font-weight: {{ settings.font_body.weight }}; line-height: 1.5; }
+.body-xs { font-size: var(--body-xs); font-family: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}; font-weight: {{ settings.font_body.weight }}; line-height: 1.5; }
  
 /* FONT FACE */
 {{ settings.font_heading | font_face }}

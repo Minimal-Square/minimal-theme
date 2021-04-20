@@ -381,5 +381,52 @@
         "label": "Cookie policy URL"
       }
     ]
+  },
+  {
+    "name": "Reviews",
+    "settings":[
+    {
+      "type": "text",
+      "id":"app_key",
+      "label": "Yotpo app key",
+      "info": "[Find your 'App key' from this URL](https://support.yotpo.com/en/article/finding-your-yotpo-app-key-and-api-secret)"
+    },
+    {
+      "type": "checkbox",
+      "id": "yotpo_reviews",
+      "label": "Enable Yotpo",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "yotpo_star_recommendations",
+      "label": "Enable Yotpo Star on recommendations[Product page]",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "yotpo_star",
+      "label": "Enable Yotpo Star on collection page",
+      "default": true
+   },
+   {
+      "type": "checkbox",
+      "id": "shopify_reviews",
+      "label": "Enable Shopify reviews",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "shopify_star_recommendations",
+      "label": "Enable Shopify Star on recommendations[Product page]",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "shopify_star",
+      "label": "Enable Shopify Star on collection page",
+      "default": false
+    }
+    ]
   }
 ]
