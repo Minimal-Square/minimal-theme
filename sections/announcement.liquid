@@ -2,7 +2,7 @@
     <section class="clr-announcement-background relative">
         {% if section.settings.announcement_text != blank or section.settings.announcement_link_text != blank %}
             <a class="absolute inset-0" href="{{ section.settings.announcement_link_url }}"></a>
-            <div class="max-width mx-auto flex items-center justify-center space-x-3 py-4 px-4">
+            <div class="max-width mx-auto flex items-center justify-center space-x-3 py-3 px-4">
                 <p class="body-sm text-center clr-announcement-text">{{ section.settings.announcement_text }}</p>
                 {% if section.settings.announcement_link_text != blank %}
                     <a class="hidden md:inline-block body-sm whitespace-nowrap clr-announcement-link" href="{{ section.settings.announcement_link_url }}">{{ section.settings.announcement_link_text }}</a>

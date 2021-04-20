@@ -1,17 +1,27 @@
-{% for collection in collections %}
-  {% unless collection.handle == 'frontpage' %}
-    {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
-    <a href="{{ collection.url }}">More {{ collection_title }} &rsaquo;</a>
-    {% for product in collection.products limit:5 %}
-      {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
-      <div>
-        <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-        {{ product.price | money }}
-        {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
-        <a href="{{ product.url | within: collection }}">
-          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-        </a>
-      </div>
-    {% endfor %}
-  {% endunless %}
-{% endfor %}
+<div class="max-width mx-auto space-y-12 mb-8">
+  {% paginate collections by 9 %}
+  <div class="lg:py-12 py-8">
+    <div class="text-xs text-gray-600 mb-8 lg:text-sm">
+      {% include 'breadcrumbs' %}
+    </div>
+    <div>
+      <h1 class="text-4xl font-serif lg:text-5xl">{{ page_title }}</h1>
+    </div>
+  </div>
+
+  <div class="2xl:container 2xl:mx-auto 2xl:px-0 grid grid-cols-3 gap-5">
+    {%- for collection in collections -%}
+      {%- if collection.image -%}
+        {%- assign collection_image = collection.image -%}
+      {%- elsif collection.products.first and collection.products.first.images != empty -%}
+        {%- assign collection_image = collection.products.first.featured_image -%}
+      {%- else -%}
+        {%- assign collection_image = blank -%}
+      {%- endif -%}
+      {% include 'collection-list-tile' %}
+
+  {%- endfor -%}
+  </div>
+  {% include 'pagination' %}
+  {% endpaginate %}
+</div>

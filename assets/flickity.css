@@ -111,7 +111,18 @@ https://flickity.metafizzy.co
   }
   
   /* ---- page dots ---- */
-  
+  {% if template.name == product %}
+  .flickity-page-dots {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    margin: 16px 0 0 0;
+    list-style: none;
+    text-align: center;
+    line-height: 1; 
+    bottom: 4%;
+  }
+  {% else%}
   .flickity-page-dots {
     /* position: absolute; */
     width: 100%;
@@ -122,6 +133,9 @@ https://flickity.metafizzy.co
     line-height: 1; 
     bottom: 4%;
   }
+  {% endif %}
+  
+
   
   .flickity-rtl .flickity-page-dots { direction: rtl; }
   

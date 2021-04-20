@@ -30,7 +30,7 @@
       {% render 'cart-drawer' %}
   </div>
   {% section 'announcement' %}
-  <div class="border-b border-gray-200 relative z-10"  id="header">
+  <div class="border-b border-gray-100 relative z-10"  id="header">
     {% section 'header' %}
   </div>
   <main role="main" class="{% if template == index %}content{% endif %}">
@@ -43,6 +43,7 @@
   {{ 'jquery.modal.min.js' | asset_url | script_tag }}
   {{ 'flickity.js' | asset_url | script_tag }} 
   {{ 'application.js' | asset_url | script_tag }}
+  {{ 'theme-sections.min.js' | asset_url | script_tag }}
   <!-- Cart.js -->
   {{ 'rivets-cart.min.js' | asset_url | script_tag }}
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}

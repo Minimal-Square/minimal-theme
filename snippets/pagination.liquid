@@ -23,7 +23,7 @@
 
 <ul class="pagination flex justify-center space-x-4">
     {% if paginate.previous %}
-      <li><a href="{{ paginate.previous.url }}" title="{{ paginate.previous.title }}">&larr;</a></li>
+      <li><a class="clr-general-links" href="{{ paginate.previous.url }}" title="{{ paginate.previous.title }}">&larr;</a></li>
     {% else %}
       <!-- <li class="disabled"><span>&larr;</span></li> -->
     {% endif %}
@@ -31,11 +31,11 @@
     {% for part in paginate.parts %}
       {% if part.is_link %}
         <li>
-          <a href="{{ part.url }}" title="">{{ part.title }}</a>
+          <a class="clr-general-links" href="{{ part.url }}" title="">{{ part.title }}</a>
         </li>
       {% else %}
         {% if part.title == paginate.current_page %}
-          <li class="active text-gray-500"><span>{{ part.title }}</span></li>
+          <li class="active clr-general-light-text"><span>{{ part.title }}</span></li>
         {% else %}
           <li><span>{{ part.title }}</span></li>
         {% endif %}
@@ -43,7 +43,7 @@
     {% endfor %}
   
     {% if paginate.next %}
-      <li><a href="{{ paginate.next.url }}" title="{{ paginate.next.title }}">&rarr;</a></li>
+      <li><a class="clr-general-links" href="{{ paginate.next.url }}" title="{{ paginate.next.title }}">&rarr;</a></li>
     {% else %}
       <!-- <li class="disabled"><span>&rarr;</span></li> -->
     {% endif %}
