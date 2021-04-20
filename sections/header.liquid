@@ -56,7 +56,7 @@
 
 <div class="{% if template == index %} absolute {% endif %} w-full">
   <div class="w-full bg-black bg-opacity-40 absolute top-0 left-0 right-0 bottom-0 h-screen hidden overlaySearch" style="z-index: 5;"></div>
-  <div class="bg-white relative z-10 header">
+  <div class="bg-white relative z-10 header shadow-small">
     <div class="grid grid-cols-3 items-center {% if section.settings.header_width == 'full-width' %} px-3 sm:px-4 lg:6 {% elsif section.settings.header_width == 'content-width' %} max-width mx-auto {% endif %}">
       <nav class="flex h-full items-center justify-start">
         <ul class="hidden -ml-4 lg:flex h-full">

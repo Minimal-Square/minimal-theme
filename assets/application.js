@@ -130,9 +130,9 @@ $(function() {
       $(window).scroll(function() { 
         if ($(window).scrollTop() >= $('.addtocart2').offset().top + $('.addtocart2').outerHeight() - window.innerHeight) { 
             
-            $('.bottomMenu').slideDown();
+            $('.bottomMenu').slideDown(300);
         } else {
-            $('.bottomMenu').slideUp();
+            $('.bottomMenu').slideUp(100);
         }
       });
     
@@ -140,9 +140,9 @@ $(function() {
     else {
       $(document).scroll(function () {
         if ($('.addtocart').is(':offscreen')) {
-            $('.bottomMenu').slideDown();
+            $('.bottomMenu').slideDown(300);
         } else {
-            $('.bottomMenu').slideUp();
+            $('.bottomMenu').slideUp(300);
         }
     });
     }
