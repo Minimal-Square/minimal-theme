@@ -1,4 +1,18 @@
-<div class="main-carousel 
+<style>
+    #shopify-section-{{ section.id }} .flickity-viewport {
+        height: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .flickity-page-dots {
+        position: absolute;
+    }
+
+    #shopify-section-{{ section.id }} .slideshow {
+        overflow: hidden!important;
+    }
+</style>
+
+<div class="main-carousel slideshow js-flickity
 {% if section.settings.slideshow_height_mobile == 'small' %}
 h-80
 {% elsif section.settings.slideshow_height_mobile == 'medium' %}
@@ -32,7 +46,7 @@ data-flickity='{ "imagesLoaded": true,"wrapAround": true
 {% endif %}
 }'
 {% endunless %}
->
+data-section-type="slideshow" data-section-id="{{ section.id }}">
     {% for block in section.blocks %}
         
         <div class="carousel-cell h-full w-full flex flex-col relative" id="slide-{{forloop.index}}">
@@ -148,6 +162,22 @@ data-flickity='{ "imagesLoaded": true,"wrapAround": true
         </div>
     {% endfor %}
 </div>
+
+{% javascript %}
+function showAlert() {
+    var elem = document.querySelector('.slideshow');
+    var flkty = new Flickity( elem, {
+    // options
+    imagesLoaded: true,
+    wrapAround: true,
+    cellAlign: 'left',
+    contain: true
+    });
+}
+
+document.addEventListener("shopify:section:load", showAlert());
+document.addEventListener("shopify:block:select", showAlert());
+{% endjavascript %}
 
 {% schema %}
 {

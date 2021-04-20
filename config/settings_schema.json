@@ -428,5 +428,63 @@
       "default": false
     }
     ]
+  },
+  {
+    "name": "Popup",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "popup_image",
+        "label": "Image"
+      },
+      {
+          "type": "text",
+          "id": "popup_title",
+          "label": "Title",
+          "default": "Spring Sale"
+      },
+      {
+        "type": "text",
+        "id": "popup_subtitle",
+        "label": "Subtitle",
+        "default": "Shop our biggest sale of the year & recieve free shipping on orders of $50 or more!"
+      },
+      {
+        "type": "checkbox",
+        "id": "popup_enable",
+        "label": "Enable Popup",
+        "default": false
+     }
+
+    ]
+  },
+  {
+    "name": "Exit Popup",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "exit_popup_image",
+        "label": "Image"
+      },
+      {
+          "type": "text",
+          "id": "exit_popup_title",
+          "label": "Title",
+          "default": "Spring Sale"
+      },
+      {
+        "type": "text",
+        "id": "exit_popup_subtitle",
+        "label": "Subtitle",
+        "default": "Shop our biggest sale of the year & recieve free shipping on orders of $50 or more!"
+      },
+      {
+        "type": "checkbox",
+        "id": "exit_popup_enable",
+        "label": "Enable Exit Popup",
+        "default": false
+     }
+
+    ]
   }
 ]

@@ -1,3 +1,4 @@
+
 //CartDrawer click events ---------------------------
 
 $(function(){
@@ -209,6 +210,7 @@ $("#divId img").each(function(index, picture) {
 // }
 
    //Passwork reset click ---------------------------
+   
    $('#clickResetPass').click(function(){
     $('#loginForm').hide();
     $('#resetPass').show();
@@ -245,3 +247,30 @@ $("#divId img").each(function(index, picture) {
     $('#resetPass').hide();
     $('#loginForm').show();
   }); 
+
+//On Document leave popup ---------------------------
+    
+    // $(document).one('mouseleave', function () {
+    //   if (!sessionStorage.alreadyClicked) {
+    //     $('.exitpopup').removeClass('hidden');
+    //     sessionStorage.alreadyClicked = "true";
+    //   }
+    // });
+
+$(function(){
+  $("html").bind("mouseleave", function () {
+    if (!sessionStorage.alreadyClicked) {
+      $('#ex2').modal({
+        fadeDuration: 100,
+        showClose: false
+      });
+      sessionStorage.alreadyClicked = "true";
+    }
+  });
+});
+    
+//Fastclick ---------------------------
+
+$(function() {
+	FastClick.attach(document.body);
+});
