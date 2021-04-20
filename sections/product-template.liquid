@@ -4,7 +4,7 @@
 <!-- Gallery & Product Form -->
 <div data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" itemscope>
   <div class="max-width mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 mt-4">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-10 mt-4">
       <div class="lg:col-span-3">
         <div class="flex mb-4">
           {% include 'breadcrumbs' %}
@@ -17,30 +17,72 @@
                 </div>
               {% endfor %}
           </div>
-          <!-- <div class="nav-carousel carousel">
+          <div class="nav-carousel carousel" data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": false, "pageDots": false, "asNavFor": ".main-carousel" }'>
               {% for media in product.media %}
-                <div class="carousel-cell">
-                    <img class="object-cover" src="{{ media | img_url: '500x500'}}" alt="{{ media.alt }}">
+                <div class="carousel-cell carousel-width w-20 h-20 sm:w-24 sm:h-24">
+                    <img class="object-cover h-full w-full" src="{{ media | img_url: '500x500'}}" alt="{{ media.alt }}">
                 </div>
               {% endfor %}
-          </div> -->
+          </div>
 
       </div>
-      <div class="lg:col-span-2">
+      <div class="lg:col-span-2"> 
         {% include 'product-form' %}
-        {% include 'product-tabs' %}
+        {% if section.settings.product_tabs_type == 'product' %}
+        <div class="mt-8">
+          {% include 'product-tabs' %}
+        </div>
+        {% endif %}
       </div>
+    </div>
+    <div class="mt-8 sm:mt-16">
+      {% if section.settings.product_tabs_type == 'section' %}
+        {% include 'product-tabs' %}
+      {% endif %}
     </div>
   </div>
 </div>
 
 {% include 'sticky-add-to-cart' %}
 
+<style>
+  #shopify-section-{{ section.id }} .carousel-width {
+    margin: 3px 12px 3px 3px;
+    transition: all 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .nav-carousel .is-selected {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+  } 
+</style>
+
 
 {% schema %}
 {
   "name": "Product tabs",
   "max_blocks": 4,
+  "settings": [
+    {
+      "type": "select",
+      "id": "product_tabs_type",
+      "label": "Type",
+      "default": "product",
+      "options": [
+        {
+          "value": "product",
+          "label": "Product"
+        },
+        {
+          "value": "section",
+          "label": "Section"
+        }
+      ]
+    }
+  ],
   "blocks": [
     {
       "name": "Product tab",
@@ -54,6 +96,12 @@
         },
         {
           "type": "textarea",
+          "id": "product_tab_excerpt", 
+          "label": "Excerpt",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        },
+        {
+          "type": "textarea",
           "id": "product_tab_text",
           "label": "Text",
           "default": "Lorem ipsum dolor asimet..."
@@ -63,118 +111,4 @@
   ]
 }
 {% endschema %}
-
-<script>
-    // Function to get the value of the checked radio button in the form.
-    function getRadioVal(form, name) {
-        var val;
-        var radios = form.elements[name];
-        for (var i=0, len=radios.length; i<len; i++) {
-            if ( radios[i].checked ) {
-                val = radios[i].value; 
-                break;
-            }
-        }
-        return val;
-    }
-
-    {% unless product.has_only_default_variant %}
-      $(function(){
-        if (!$("input:radio[name='color']").is(":checked") && !$("input:radio[name='size']").is(":checked"){% if product.options[2] %} && !$("input:radio[name='material']").is(":checked"){% endif %}) {
-          $("input[name='add']").prop( "disabled", true );
-        }
-        else {
-          $("input[name='add']").prop( "disabled", false );
-        }
-
-        $('input').on('click', function(){
-          if (!$("input:radio[name='color']").is(":checked") || !$("input:radio[name='size']").is(":checked") {% if product.options[2] %} || !$("input:radio[name='material']").is(":checked"){% endif %}) {
-          $("input[name='add']").prop( "disabled", true );
-        }
-        else {
-          $("input[name='add']").prop( "disabled", false );
-        }
-
-        });
-        
-      });
-    {% endunless %}
-    
-
-    // Function runs every time a variant radio button or select dropdown changes.
-    function updateProductInformation() {
-      // Save the option select values
-      {% if product.options[0] %}
-        {% if product.options[0] == 'Color' %}
-          var opt1 = getRadioVal( document.getElementById('product_form'), 'color' );
-        {% else %}
-          var opt1 = document.getElementById('select_one').value;
-        {% endif %}
-      {% endif %}
-
-      {% if product.options[1] %}
-        {% if product.options[1] == 'Size' %}
-          var opt2 = getRadioVal( document.getElementById('product_form'), 'size' );
-        {% else %}
-          var opt2 = document.getElementById('select_two').value;
-        {% endif %}
-      {% endif %}
-
-      {% if product.options[2] %}
-        {% if product.options[2] == 'Material' %}
-          var opt3 = getRadioVal( document.getElementById('product_form'), 'material' );
-        {% else %}
-          var opt3 = document.getElementById('select_three').value;
-        {% endif %}
-      {% endif %}
-      // Capture the quantity and save it as a liquid variable
-      var quantity = document.getElementById('quantity').value;
-      {% capture quantity %}quantity{% endcapture %}
-      var id = '';
-      var available;
-      // Loop through all of the variants to check if the option values match any of the variant combinations
-      {% for v in product.variants %}
-        if(opt1=="{{ v.option1 }}"{% if product.options[1] %} && opt2=="{{ v.option2 }}"{% endif %}{% if product.options[2] %} && opt3=="{{ v.option3 }}"{% endif %}) {
-          // Save the ID for the specific variant combination.
-          var id = {{ v.id }};
-          var available = {{ v.available }};
-          // Save the price given the quantity the user has selected. Once multiplied then format the price using the js api.
-          var fullPrice = {{ quantity }} * {{ v.price }};
-          var price = Shopify.formatMoney({{v.price}}, "{{ shop.money_format }}");
-          var formattedPrice = Shopify.formatMoney(fullPrice, "{{ shop.money_format }}" );
-        }
-      {% endfor %}
-      // URL Query String
-      console.log(window.location.search);
-      // If variant has an id then set the cart to the selected variant and change the price field.
-      if(id!='') {
-        document.getElementById('add_to_cart').setAttribute('data-cart-add', id);
-        // document.getElementById('product_price').innerHTML = formattedPrice;
-        document.getElementById('price').innerHTML = price;
-        $(function(){
-          $("input[name='add']").prop( "disabled", false );
-        });
-        if(available == false){
-          document.getElementById('add_to_cart').setAttribute('value', 'Sold Out');
-          $(function(){
-            $("input[name='add']").prop( "disabled", true );
-          });
-        } else if (available == true) {
-          document.getElementById('add_to_cart').setAttribute('value', 'Add To Cart');
-          $(function(){
-            $("input[name='add']").prop( "disabled", false );
-          });
-        }
-        
-      } else {
-        document.getElementById('add_to_cart').setAttribute('data-variant-id', id);
-        document.getElementById('add_to_cart').setAttribute('value', 'Add To Cart');
-        // document.getElementById('product_price').innerHTML = 'Unavailable';
-        document.getElementById('price').innerHTML = 'Unavailable';
-        $(function(){
-          $("input[name='add']").prop( "disabled", true );
-        });
-      }
-    }
-</script>
 

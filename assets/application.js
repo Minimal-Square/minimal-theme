@@ -104,15 +104,17 @@ $(function(){
 });
 
 //On Product Description click ---------------------------
-$('.clickDropdown').on('click', function(){
-  this.dropdownItem = $(this).siblings('.dropdownItem');
+$(function(){
+  $('.clickDropdown').on('click', function(){
+    this.dropdownItem = $(this).siblings('.dropdownItem');
 
-  this.dropdownItem.slideToggle(300);
-  $(this).find('.chevronDesc').toggleClass('rotate');
-}); 
+    this.dropdownItem.slideToggle(300);
+    $(this).find('.chevronDesc').toggleClass('rotate');
+  }); 
+});
 
 //Sticky add to cart ---------------------------
-$(document).ready(function() {
+$(function() {
   if (window.location.href.indexOf("products") > -1) {
     
     jQuery.expr.filters.offscreen = function(el) {
@@ -128,9 +130,9 @@ $(document).ready(function() {
       $(window).scroll(function() { 
         if ($(window).scrollTop() >= $('.addtocart2').offset().top + $('.addtocart2').outerHeight() - window.innerHeight) { 
             
-            $('.bottomMenu').slideDown();
+            $('.bottomMenu').slideDown(300);
         } else {
-            $('.bottomMenu').slideUp();
+            $('.bottomMenu').slideUp(100);
         }
       });
     
@@ -138,15 +140,73 @@ $(document).ready(function() {
     else {
       $(document).scroll(function () {
         if ($('.addtocart').is(':offscreen')) {
-            $('.bottomMenu').slideDown();
+            $('.bottomMenu').slideDown(300);
         } else {
-            $('.bottomMenu').slideUp();
+            $('.bottomMenu').slideUp(300);
         }
     });
     }
   }
 });
 
+
+//Quick shop modal ---------------------------
+
+$('.jquery-modal').addClass('z-75');
+
+$(function(){
+  $('.jquery-modal .blocker .current').click(function(e){
+    e.preventDefault();
+    $('.maskQuickshop').toggleClass( "invisible" );
+    $('.quickShop').toggle();
+    $('body').css('overflowY', 'hidden');
+  });
+
+  $('.maskQuickshop').click(function(e){
+    e.preventDefault();
+    $('.quickShop').toggle();
+    $('.maskQuickshop').toggleClass( "invisible" );
+    $('body').css('overflowY', 'auto');
+  });
+});
+
+//Header Mega Animation ---------------------------
+$(function(){
+  $('#header ul li .megamenu-height').each(function(index, mega){
+    var height = $(mega).height();
+    height += 'px';
+    $('#header ul li:hover .dropdown-menu').css({'--menu-open-height': height });
+    console.log(height);
+  });
+});
+
+$("#divId img").each(function(index, picture) {
+  var height = $(picture).height();
+  //Do everything you want with the height from the image now
+});
+
+// function(e) {
+//   e.stopPropagation();
+
+//   if (e.target.classList.contains('navmenu-link-parent')) {
+//     _this.closeSiblings(_this);
+//   }
+// }
+
+// function() {
+//   clearTimeout(_this.openTimer);
+//   _this.closeTimer = setTimeout(_this.close, 400);
+// }
+
+// function() {
+//   clearTimeout(_this.closeTimer);
+
+//   if (!_this.submenu.classList.contains('navmenu-depth-3')) {
+//     _this.openTimer = setTimeout(_this.open, 200);
+//   } else {
+//     _this.open();
+//   }
+// }
 
    //Passwork reset click ---------------------------
    $('#clickResetPass').click(function(){

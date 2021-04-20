@@ -2,14 +2,17 @@
   {% for block in section.blocks %}
     
     <div>
-      <div class="flex justify-between py-8 cursor-pointer clickDropdown">
-        <h4 class="text-lg font-medium">{{ block.settings.product_tab_heading }}</h4>
-        <span aria-hidden="true" class="text-2xl flex-shrink-0 icon icon-chevron-down chevronDesc"></span>
+      <div class="py-6 sm:py-8 cursor-pointer clickDropdown">
+        <div class="flex justify-between">
+          <h4 class="heading-xs font-medium mb-2">{{ block.settings.product_tab_heading }}</h4>
+          <span aria-hidden="true" class="text-2xl flex-shrink-0 icon icon-chevron-down chevronDesc"></span>
+        </div>
+        <p class="clr-general-text mr-12">{{ block.settings.product_tab_excerpt }}</p>
       </div>
       <div class="hidden dropdownItem mb-8">
-        <p>{{ block.settings.product_tab_text }}</p>
+        <p class="clr-general-text">{{ block.settings.product_tab_text }}</p>
       </div>
-    </div>
+    </div> 
 
   {% endfor %}
 

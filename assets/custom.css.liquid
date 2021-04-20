@@ -30,6 +30,7 @@
     --heading-md: calc(var(--base-font-size) * 1.75); /* 28px */
     --heading-sm: calc(var(--base-font-size) * 1.375); /* 22px */ 
     --heading-xs: calc(var(--base-font-size) * 1.125); /* 18px */
+    --body-lg: calc(var(--base-font-size) * 1.125); /* 18px */
     --body-md: calc(var(--base-font-size) * 1); /* 16px */
     --body-sm: calc(var(--base-font-size) / 1.143); /* 14px */
     --body-xs: calc(var(--body-sm) / 1.333); /* 12px */
@@ -78,6 +79,7 @@
 .heading-md { font-size: var(--heading-md); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
 .heading-sm { font-size: var(--heading-sm); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
 .heading-xs { font-size: var(--heading-xs); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
+.body-lg { font-size: var(--body-lg); }
 .body-md { font-size: var(--body-md); }
 .body-sm { font-size: var(--body-sm); }
 .body-xs { font-size: var(--body-xs); }
@@ -273,57 +275,105 @@ header, .header {
 
 /* Swatch Helper */
 .option {
-    padding: 0.75rem 1.5rem;
-    margin: 0 5px 10px 0;
+    padding: 0 1.5rem;
+    /* margin: 0 5px 10px 0; */
 }
 
 /* Swatches -> Option */
 input[name="add"]:disabled {
     background: #EDEDED;
     color: var(--clr-general-light-text);
-  }
+} 
+
+input[name='color']+label {
+    border: 1px solid var(--clr-button-secondary-border);
+    color: var(--clr-);
+}
   
-  input[name='color']:checked+label {
-    background-color: black;
-  }
+input[name='color']:checked+label {
+    border: 1px solid var(--clr-general-links);
+    color: var(--clr-general-links);
+}
+
+input[name='color']:focus+label {
+    border: 1px solid var(--clr-general-links);
+    color: var(--clr-general-links);
+    transition: all 150ms ease-out;
+    box-shadow: 0 0 0 4px rgb(0 0 0 / 10%);
+}
   
-  input[name='size']+label, input[name='material']+label {
+input[name='size']+label, input[name='material']+label {
     border: 1px solid var(--clr-button-secondary-border);
     color: var(--clr-general-text);
     transition: all 150ms ease-out;
     font-size: var(--body-sm);
-  }
+}
   
-  input[name='size']:checked+label, input[name='material']:checked+label {
+input[name='size']:checked+label, input[name='material']:checked+label {
     border: 1px solid var(--clr-general-links);
     color: var(--clr-general-links);
     
-  }
+}
   
-  input[name='size']:focus+label, input[name='material']:focus+label {
+input[name='size']:focus+label, input[name='material']:focus+label {
     border: 1px solid var(--clr-general-links);
     color: var(--clr-general-links);
     transition: all 150ms ease-out;
     box-shadow: 0 0 0 4px rgb(0 0 0 / 10%);
     
-  }
+}
 
-  input[name='size']:hover+label, input[name='material']:hover+label {
+input[name='size']:hover+label, input[name='material']:hover+label {
     filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.08));
-  }
+}
 
-  #selected {
+#selected {
     background-color: #EDEDED;
-  }
+}
   
-  /* Chrome, Safari, Edge, Opera */
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+  
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+  .quantity_input_container button {
+    border: 1px solid var(--clr-button-secondary-border);
+    color: var(--clr-general-text);
+    transition: all 150ms ease-out;
+    font-size: var(--body-sm);
+    outline: none;
+}
+
+.quantity_input_container button:active {
+    border: 1px solid var(--clr-general-links);
+    color: var(--clr-general-links);
+    transition: all 150ms ease-out;
+    box-shadow: 0 0 0 4px rgb(0 0 0 / 10%);
+}
+
+/* Outline */
+.outline {
+    outline: 0;
+}
+
+/* Shadows */
+
+.shadow-small {
+    filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.06));
+}
+
+/* Text selection color */
+::-moz-selection { /* Code for Firefox */
+    background-color: rgb(230, 230, 230);
   }
   
-  /* Firefox */
-  input[type=number] {
-    -moz-appearance: textfield;
+  ::selection {
+    background-color: rgb(238, 238, 238);
   }

@@ -1,12 +1,12 @@
 {%- if section.settings.show_product_recommendations -%}
-<div class="max-width mx-auto py-16">
+<div class="max-width mx-auto py-8 sm:py-16">
   <div class="product-recommendations" data-product-id="{{ product.id }}" data-limit="4">
     {%- if recommendations.products_count > 0 -%}
       <h2 class="text-2xl font-bold mb-6">{{ section.settings.heading }}</h2>
       <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
         {%- for product in recommendations.products -%}
         
-        <div class="product">
+        <div class="product"> 
           <div class="aspect-h-1 aspect-w-1 mb-4">
             <a href="{{ product.url }}"><img class="product__img object-cover" src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.featured_image.alt }}" /></a>
           </div>

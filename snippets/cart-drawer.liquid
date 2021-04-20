@@ -49,11 +49,10 @@
       </div>
     
       <div class="text-center">
-        <button class="flex justify-center items-center space-x-2 w-full rounded-md bg-black text-white py-2 mb-2" name="checkout" type="submit">
-          <span aria-hidden="true" class="text-xl icon icon-shopping-cart"></span>
+        <button class="flex justify-center items-center space-x-2 w-full btn-lg btn-primary py-2 mb-3" name="checkout" type="submit">
           <p>{{ 'cart.general.checkout' | t }}</p>
         </button>
-        <a href="/" class="underline">{{ 'cart.general.continue_browsing_html' | t }}</a>
+        <a href="/" class="clr-general-links">{{ 'cart.general.continue_browsing_html' | t }}</a>
       </div>
     </div>
   </form>
@@ -62,6 +61,6 @@
 
   <div class="mt-7" rv-show="cart.item_count | lt 1">
     <p class="mb-3">{{ 'cart.general.empty' | t }}</p>
-    <a href="/" class="underline my-3">{{ 'cart.general.continue_browsing_html' | t }}</a>
+    <a href="/" class="clr-general-links my-3">{{ 'cart.general.continue_browsing_html' | t }}</a>
   </div>
 </div>
