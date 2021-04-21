@@ -22,6 +22,8 @@
     --clr-footer-text: {{ settings.clr_footer_text }};
     --clr-overlay: {{ settings.clr_overlay }};
     --clr-overlay-opacity: {{ settings.clr_overlay_opacity }};
+
+    
     
     /* TYPOGRAPHY */
     --base-font-size: {{ settings.base_font_size }}px; /* 16px default */
@@ -34,18 +36,75 @@
     --body-md: calc(var(--base-font-size) * 1); /* 16px */
     --body-sm: calc(var(--base-font-size) / 1.143); /* 14px */
     --body-xs: calc(var(--body-sm) / 1.333); /* 12px */
+
+
+    --font-size-heading-large: 2.125rem;
+    --font-size-heading-medium: 1.875rem;
+    --font-size-heading-1: 1.75rem;
+    --font-size-heading-2: 1.625rem;
+    --font-size-heading-3: 1.5rem;
+    --font-size-heading-4: 1.25rem;
+    --font-size-heading-5: 1.125rem;
+    --font-size-heading-6: 1.125rem;
+    --font-size-body-larger: 1.375rem;
+    --font-size-body-large: 1.25rem;
+    --font-size-body-medium: 1.125rem;
+    --font-size-body: 1.0rem;
+    --font-size-body-small: 0.9375rem;
+    --font-size-body-smaller: 0.875rem;
+    --font-size-body-smallest: 0.8125rem;
+    --font-size-body-tiny: 0.75rem;
+    --font-size-button-small: 0.875rem;
+    --font-size-button-medium: 1.0rem;
+    --font-size-button-large: 1.125rem;
+    --font-size-button-x-large: 1.3125rem;
+    --font-size-menu-large: 1.0625rem;
+    --font-size-menu: 1.0rem;
+    --font-size-input: 1.0rem;
+    --font-size-section-heading: 1.25rem;
+    --font-size-menu-body-medium: 1.125rem;
+    --font-size-menu-body-small: 0.9375rem;
+    --font-size-heading-body-small: 0.9375rem;
+    --font-size-heading-body-smaller: 0.875rem;
+    --font-size-heading-slideshow: 1.9921875rem;
 }
-  
-@media only screen and (max-width: 1024px) {
+          
+@media screen and (max-width: 719px) {
     :root {
-        --heading-xl: calc(var(--base-font-size) * 2.25); /* 32px Updated*/
-        --heading-lg: calc(var(--base-font-size) * 1.75); /* 28px Updated */
-        --heading-md: calc(var(--base-font-size) * 1.75); /* 28px */
-        --heading-sm: calc(var(--base-font-size) * 1.375); /* 22px */ 
-        --heading-xs: calc(var(--base-font-size) * 1); /* 16px Updated */
-        --body-md: calc(var(--base-font-size) * 0.875); /* 14px Updated */
-        --body-sm: calc(var(--base-font-size) / 1.143); /* 14px */
-        --body-xs: calc(var(--body-sm) / 1.333); /* 12px */
+        --font-size-heading-large: 1.9921875rem;
+    }
+}
+        
+@media screen and (max-width: 859px) {
+    :root {
+        --font-size-heading-medium: 1.7578125rem;
+        --font-size-heading-1: 1.640625rem;
+        --font-size-heading-2: 1.5234375rem;
+        --font-size-heading-3: 1.40625rem;
+        --font-size-heading-4: 1.171875rem;
+        --font-size-heading-5: 1.0546875rem;
+        --font-size-heading-6: 1.0546875rem;
+        --font-size-body-larger: 1.2890625rem;
+        --font-size-body-large: 1.171875rem;
+        --font-size-body-medium: 1.0546875rem;
+        --font-size-body: 0.9375rem;
+        --font-size-body-small: 0.87890625rem;
+        --font-size-body-smaller: 0.8203125rem;
+        --font-size-body-smallest: 0.76171875rem;
+        --font-size-body-tiny: 0.703125rem;
+        --font-size-button-small: 0.8203125rem;
+        --font-size-button-medium: 0.875rem;
+        --font-size-button-large: 0.9921875rem;
+        --font-size-button-x-large: 1.16796875rem;
+        --font-size-menu-large: 0.93359375rem;
+        --font-size-menu: 0.9375rem;
+        --font-size-input: 0.9375rem;
+        --font-size-section-heading: 1.171875rem;
+        --font-size-menu-body-medium: 1.0546875rem;
+        --font-size-menu-body-small: 0.87890625rem;
+        --font-size-heading-body-small: 0.87890625rem;
+        --font-size-heading-body-smaller: 0.8203125rem;
+        --font-size-heading-slideshow: 1.9921875rem;
     }
 }
 
@@ -73,7 +132,38 @@
 .clr-overlay { background-color: var(--clr-overlay); }
 .clr-overlay-opacity { opacity: var(--clr-overlay-opacity); }
 
-/* TYPOGRAPHY CLASSES */
+/* NEW TYPOGRAPHY CLASSES */
+.font-size-heading-large { font-size: var(--font-size-heading-large); }
+.font-size-heading-medium { font-size: var(--font-size-heading-medium); }
+.font-size-heading-1 { font-size:  var(--font-size-heading-1); }
+.font-size-heading-2 { font-size: var(--font-size-heading-2); }
+.font-size-heading-3 { font-size: var(--font-size-heading-3); }
+.font-size-heading-4 { font-size: var(--font-size-heading-4); }
+.font-size-heading-5 { font-size: var(--font-size-heading-5); }
+.font-size-heading-6 { font-size: var(--font-size-heading-6); }
+.font-size-body-larger { font-size: var(--font-size-body-larger); }
+.font-size-body-large { font-size: var(--font-size-body-large); }
+.font-size-body-medium { font-size: var(--font-size-body-medium); }
+.font-size-body { font-size: var(--font-size-body); }
+.font-size-body-small { font-size: var(--font-size-body-small); }
+.font-size-body-smaller { font-size: var(--font-size-body-smaller); }
+.font-size-body-smallest { font-size: var(--font-size-body-smallest); }
+.font-size-body-tiny { font-size: var(--font-size-body-tiny); }
+.font-size-button-small { font-size: var(--font-size-button-small); }
+.font-size-button-medium { font-size: var(--font-size-button-medium); }
+.font-size-button-large { font-size: var(--font-size-button-large); }
+.font-size-button-x-large { font-size: var(--font-size-button-x-large); }
+.font-size-menu-large { font-size: var(--font-size-menu-large); }
+.font-size-menu { font-size: var(--font-size-menu); }
+.font-size-input { font-size: var(--font-size-input); }
+.font-size-section-heading { font-size: var(--font-size-section-heading); }
+.font-size-menu-body-medium { font-size: var(--font-size-menu-body-medium); }
+.font-size-menu-body-small { font-size: var(--font-size-menu-body-small); }
+.font-size-heading-body-small { font-size: var(--font-size-heading-body-small); }
+.font-size-heading-body-smaller { font-size: var(--font-size-heading-body-smaller); }
+.font-size-heading-slideshow { font-size: var(--font-size-heading-slideshow); }
+
+/* OLD TYPOGRAPHY CLASSES */
 .heading-xl { font-size: var(--heading-xl); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
 .heading-lg { font-size: var(--heading-lg); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
 .heading-md { font-size: var(--heading-md); font-family: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}; font-weight: {{ settings.font_heading.weight }}; line-height: 1.25; }
