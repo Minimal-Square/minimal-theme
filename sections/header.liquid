@@ -219,12 +219,14 @@
             {% endif %}
           {% endif %}
         </div>
-
-        
         
         <div class="cart" data-cart-view>
           <a href="{% if settings.cart_type == 'cart_type_page' %}/cart{% endif %}"{% if settings.cart_type == 'cart_type_drawer' %}@click.prevent="cartOpen = true"{% endif %}class="flex space-x-4">
-            <span class="text-2xl icon icon-shopping-cart" aria-hidden="true"></span>
+            <span class="text-2xl icon icon-shopping-cart relative" aria-hidden="true">
+                {% if cart.item_count >= 1 %}
+                    <div class="-mr-1 w-4 h-4 text-center items-center body-xs bg-yellow-400 rounded-full absolute top-0 right-0">{{ cart.item_count }}</div>
+                {% endif %}
+            </span>
           </a>
           
         </div>
