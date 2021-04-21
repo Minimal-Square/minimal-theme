@@ -16,6 +16,7 @@
   
   {{ 'jquery.modal.css' | asset_url | stylesheet_tag }}
   {{ 'application.css' | asset_url | stylesheet_tag }}
+  {{ 'hamburger.css' | asset_url | stylesheet_tag }}
   {{ 'custom.css' | asset_url | stylesheet_tag }}
   {{ 'flickity.css' | asset_url | stylesheet_tag }}
   {{ 'feather.css' | asset_url | stylesheet_tag }}
@@ -38,12 +39,13 @@
   </main>
   {% section 'footer' %}
   {% render 'exit-popup' %}
-  {% render 'cookies' %} 
+  {% render 'cookies' %}
   
   {{ 'jquery.js' | asset_url | script_tag }}
   {{ 'jquery.modal.min.js' | asset_url | script_tag }}
   {{ 'flickity.js' | asset_url | script_tag }} 
   {{ 'jqueryform.js' | asset_url | script_tag }} 
+  {{ "fastclick.js" | asset_url | script_tag }}
   {{ 'application.js' | asset_url | script_tag }}
   <!-- {{ 'theme-sections.min.js' | asset_url | script_tag }} -->
   <!-- Cart.js -->

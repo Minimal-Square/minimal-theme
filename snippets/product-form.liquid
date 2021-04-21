@@ -21,7 +21,7 @@
                 {% for variant in product.variants %}
                 {% unless used contains variant.option1 %}
                 <div class="flex items-center justify-center">
-                  <input class="absolute z-0 appearance-none" type="radio" name="color" value="{{ variant.option1 }}" data-id="{{ variant.id }}" id="color-{{ variant.id }}" onclick="updateProductInformation()">
+                  <input class="absolute z-0 appearance-none options" type="radio" name="color" value="{{ variant.option1 }}" data-id="{{ variant.id }}" id="color-{{ variant.id }}" onclick="updateProductInformation()">
                   <label for="color-{{ variant.id }}" class="option w-full h-12 flex items-center justify-center cursor-pointer transition-colors ease-in-out rounded-md label" style="z-index: 5;"></label>
                   {% capture used %}{{ used }} {{ variant.option1 }}{% endcapture %}
                 </div>
@@ -55,7 +55,7 @@
                 {% for variant in product.variants %}
                 {% unless used contains variant.option2 %}
                 <div class="flex justify-center align-middle items-center text-center relative">
-                  <input class="absolute z-0" type="radio" name="size" value="{{ variant.option2 }}" data-id="{{ variant.id }}" id="size-{{ variant.id }}" onclick="updateProductInformation()">
+                  <input class="absolute z-0 options" type="radio" name="size" value="{{ variant.option2 }}" data-id="{{ variant.id }}" id="size-{{ variant.id }}" onclick="updateProductInformation()">
                   <label for="size-{{ variant.id }}" class="option w-full h-12 flex items-center justify-center bg-white rounded-md cursor-pointer label" style="z-index: 5;">{{ variant.option2 }}</label>
                   
                   {% capture used %}{{ used }} {{ variant.option2 }}{% endcapture %}
@@ -90,7 +90,7 @@
                 {% for variant in product.variants %}
                 {% unless used contains variant.option3 %}
                 <div class="flex justify-center align-middle items-center text-center relative">
-                  <input type="radio" name="material" value="{{ variant.option3 }}" data-id="{{ variant.id }}" id="material-{{ variant.id }}" onclick="updateProductInformation()" class="absolute z-0">
+                  <input class="absolute z-0 options" type="radio" name="material" value="{{ variant.option3 }}" data-id="{{ variant.id }}" id="material-{{ variant.id }}" onclick="updateProductInformation()">
                   <label for="material-{{ variant.id }}" class="option w-full h-12 flex items-center justify-center bg-white rounded-md cursor-pointer label" style="z-index: 5;">{{ variant.option3 }}</label>
                   
                   {% capture used %}{{ used }} {{ variant.option3 }}{% endcapture %}
@@ -138,35 +138,32 @@
     <!-- Ajax Message -->
     <p class="ajax_message"></p>
   </form>
-  {{ "jquery.js" | asset_url | script_tag }} 
   <div class="mt-8">
     <p class="body-md clr-general-text">{{ product.description }}</p>
-  </div>
-
-  <script>
-    function decrement() {
-      $('#quantity').val( function(i, oldval) {
-        if (oldval > 1){
-          return --oldval;
-        } else {
-          return oldval;
-        }
-          
-      });
-    }
-    function increment() {
-      $('#quantity').val( function(i, oldval) {
-          return ++oldval;
-      });
-    } 
-
-    function addCartUpdate() {
-      var quantity = document.getElementById('quantity').value;
-      document.getElementById('add_to_cart').setAttribute("data-cart-quantity", quantity);
-      }
-  </script>
+</div>
   
 <script>
+  function decrement() {
+    $('#quantity').val( function(i, oldval) {
+      if (oldval > 1){
+        return --oldval;
+      } else {
+        return oldval;
+      }
+        
+    });
+  }
+  function increment() {
+    $('#quantity').val( function(i, oldval) {
+        return ++oldval;
+    });
+  } 
+
+  function addCartUpdate() {
+    var quantity = document.getElementById('quantity').value;
+    document.getElementById('add_to_cart').setAttribute("data-cart-quantity", quantity);
+  }
+
   // Function to get the value of the checked radio button in the form.
   function getRadioVal(form, name) {
       var val;
@@ -189,7 +186,7 @@
         $("input[name='add']").prop( "disabled", false );
       }
 
-      $('input').on('click', function(){
+      $('.options').on('click', function(){
         if (!$("input:radio[name='color']").is(":checked") || !$("input:radio[name='size']").is(":checked") {% if product.options[2] %} || !$("input:radio[name='material']").is(":checked"){% endif %}) {
         $("input[name='add']").prop( "disabled", true );
       }

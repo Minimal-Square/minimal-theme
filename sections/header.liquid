@@ -12,12 +12,11 @@
     #header .parent_link:hover {
         opacity: 0.8;
     }
-    #header ul li ul a:hover {
+    #header .child_default a:hover, #header .child_mega a:hover {
         color: #046e82;
     }
     #header ul li .dropdown-menu {
         transition: all 250ms cubic-bezier(0, 0, 0.2, 1);
-        overflow: hidden;
         height: var(--menu-closed-height);
     }
     #header ul li:hover .dropdown-menu {
@@ -35,7 +34,7 @@
     }
 
     .content {
-         padding-top: 64px;
+        padding-top: 64px;
     }
 
     #shopify-section-{{ section.id }} .grid-autofit {
@@ -48,6 +47,17 @@
 
     #shopify-section-{{ section.id }} .megamenu-height {
         max-height: 70vh;
+    }
+    #header .child_default .grandchild_default {
+        background:white; 
+        display:none;
+        position: absolute;
+        top: 0;
+        left: calc(100% + 1rem);
+        min-width: 170px;
+    }
+    #header .child_default a:hover + .grandchild_default {
+        display: block;
     }
 </style>
 
@@ -83,68 +93,57 @@
               {% if mega contains link.title %}
                 {% for block in section.blocks %}
                     {% if block.settings.header_megamenu_image_trigger == link.title %}
-                        <div class="bg-white shadow-md absolute invisible z-50 dropdown-menu w-60 megamenu-height {% if link.links.size > 1 and link.levels > 1 %} left-0 w-full{% endif %}">
-                            <div class="flex py-4 {% if section.settings.header_width == 'full-width' %} px-3 sm:px-4 lg:6 {% elsif section.settings.header_width == 'content-width' %} max-width mx-auto  {% endif %} {% if link.links.size > 1 and link.levels > 1 %} py-8 {% endif %} {% if link.levels == 1 %} flex-col px-4 {% endif %} w-full header_content">
+                        <div class="bg-white shadow-md absolute invisible z-50 dropdown-menu megamenu-height left-0 w-full">
+                            <div class="flex py-8 {% if section.settings.header_width == 'full-width' %} px-3 sm:px-4 lg:6 {% elsif section.settings.header_width == 'content-width' %} max-width mx-auto  {% endif %}{% if link.levels == 1 %} flex-col px-4 {% endif %} w-full header_content child_mega">
                                 <ul class="flex-1 grid-autofit grid gap-5
-                                
+
                                 {% if link.links.size == 1 %} grid-cols-1 {% elsif link.links.size == 2 %} grid-cols-2 {% elsif link.links.size == 3 %} grid-cols-3 {% elsif link.links.size >= 4 %} grid-cols-4 {% endif %}">
                                 
-                                {% for child_link in link.links %}
-                                {% if child_link.links == blank %}
-                                <div class="w-full py-1.5">
-                                    <a href="{{ child_link.url }}" class="body-md">{{ child_link.title }}</a>
+                                    {% for child_link in link.links %}
+                                    <li class="inline-block ">
+                                        <a href="{{ child_link.url }}" class="font-semibold heading-xs">{{ child_link.title }}</a>
+                                        {% if child_link.links != blank %}
+                                            <ul class="grandchild body-md block space-y-2 mt-4">
+                                                {% for grandchild_link in child_link.links %} 
+                                                <li class="block">
+                                                    <a class="block h-full w-full" href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <div class="flex space-x-5 {% if block.settings.header_megamenu_image_position == 'first-column' %} order-first mr-5 {% elsif block.settings.header_megamenu_image_position == 'last-column' %} order-last ml-5 {% endif %}">
+
+                                    {% unless block.settings.header_megamenu_image_1 == blank %}
+                                    <div class="image megamenu-image-width">
+                                        <a href="{{ block.settings.header_megamenu_image_url_1 }}">
+                                            <div class="aspect-w-4 aspect-h-5">
+                                                <img class="object-cover" src="{{ block.settings.header_megamenu_image_1 | img_url: 'master' }}" alt="">
+                                            </div>
+                                        </a>
+                                        <p class="body-md py-4">
+                                            <a href="{{ block.settings.header_megamenu_image_url_1 }}">{{ block.settings.header_megamenu_image_text_1 }}</a>
+                                        </p>
+                                    </div> 
+                                    {% endunless %}
+                                    
+
+                                    {% unless block.settings.header_megamenu_image_2 == blank %}
+                                    <div class="image megamenu-image-width">
+                                        <a href="{{ block.settings.header_megamenu_image_url_2 }}">
+                                            <div class="aspect-w-4 aspect-h-5">
+                                                <img class="object-cover" src="{{ block.settings.header_megamenu_image_2 | img_url: 'master' }}" alt="">
+                                            </div>
+                                        </a>
+                                        <p class="body-md py-4">
+                                            <a href="{{ block.settings.header_megamenu_image_url_2 }}">{{ block.settings.header_megamenu_image_text_2 }}</a>
+                                        </p>
+                                    </div>
+                                    {% endunless %}
                                     
                                 </div>
-                                {% else %}
-                                <li class="inline-block ">
-                                    <a href="{{ child_link.url }}" class="font-semibold heading-xs">{{ child_link.title }}</a>
-                                    {% if child_link.links != blank %}
-                                        <ul class="grandchild body-md block space-y-2 mt-4">
-                                            {% for grandchild_link in child_link.links %} 
-                                            <li class="block">
-                                                <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </li>
-                                {% endif %}
-                                {% endfor %}
-                                </ul>
-                                {% unless link.levels == 1 %}
-                                    
-                                    <div class="flex space-x-5 {% if block.settings.header_megamenu_image_position == 'first-column' %} order-first mr-5 {% elsif block.settings.header_megamenu_image_position == 'last-column' %} order-last ml-5 {% endif %}">
-
-                                        {% unless block.settings.header_megamenu_image_1 == blank %}
-                                        <div class="image megamenu-image-width">
-                                            <a href="{{ block.settings.header_megamenu_image_url_1 }}">
-                                                <div class="aspect-w-4 aspect-h-5">
-                                                    <img class="object-cover" src="{{ block.settings.header_megamenu_image_1 | img_url: 'master' }}" alt="">
-                                                </div>
-                                            </a>
-                                            <p class="body-md py-4">
-                                                <a href="{{ block.settings.header_megamenu_image_url_1 }}">{{ block.settings.header_megamenu_image_text_1 }}</a>
-                                            </p>
-                                        </div> 
-                                        {% endunless %}
-                                        
-
-                                        {% unless block.settings.header_megamenu_image_2 == blank %}
-                                        <div class="image megamenu-image-width">
-                                            <a href="{{ block.settings.header_megamenu_image_url_2 }}">
-                                                <div class="aspect-w-4 aspect-h-5">
-                                                    <img class="object-cover" src="{{ block.settings.header_megamenu_image_2 | img_url: 'master' }}" alt="">
-                                                </div>
-                                            </a>
-                                            <p class="body-md py-4">
-                                                <a href="{{ block.settings.header_megamenu_image_url_2 }}">{{ block.settings.header_megamenu_image_text_2 }}</a>
-                                            </p>
-                                        </div>
-                                        {% endunless %}
-                                        
-                                    </div>
-                                    
-                                {% endunless %}
                             </div>
                         </div>
                     {% endif %}
@@ -152,45 +151,46 @@
               {% else %}
               <!-- DEFAULT LINKS -->
                 <div class="bg-white shadow-md absolute invisible z-50 dropdown-menu w-60 megamenu-height">
-                        <div class="flex py-4 {% if section.settings.header_width == 'full-width' %} px-3 sm:px-4 lg:6 {% elsif section.settings.header_width == 'content-width' %} max-width mx-auto  {% endif %} flex-col px-4 w-full header_content">
-                            <ul class="flex-1 grid-autofit grid gap-5
-                            
-                            {% if link.links.size == 1 %} grid-cols-1 {% elsif link.links.size == 2 %} grid-cols-2 {% elsif link.links.size == 3 %} grid-cols-3 {% elsif link.links.size >= 4 %} grid-cols-4 {% endif %}">
-                            
-                            {% for child_link in link.links %}
-                            {% if child_link.links == blank %}
-                            <div class="w-full py-1.5">
-                                <a href="{{ child_link.url }}" class="body-md">{{ child_link.title }}</a>
-                            </div>
-                            {% else %}
-                            <li class="inline-block ">
-                                <a href="{{ child_link.url }}" class="font-semibold heading-xs">{{ child_link.title }}</a>
+                    <div class="flex py-2 {% if section.settings.header_width == 'full-width' %} px-3 sm:px-4 lg:6 {% elsif section.settings.header_width == 'content-width' %} mx-auto {% endif %} flex-col px-4 w-full header_content">
+                        <ul class="child_default">
+                        
+                        {% for child_link in link.links %}
+                        {% unless mega contains link.title %}
+                            <li class="w-full relative">
+                                <a href="{{ child_link.url }}" class="body-md flex items-center py-2 justify-between">
+                                    <p>{{ child_link.title }}</p>
+                                    {% if child_link.links != blank %}
+                                        <span aria-hidden="true" class="text-2xl icon icon-chevron-right cursor-pointer navDropdown chevronNav"></span>
+                                    {% endif %}
+                                </a>
                                 {% if child_link.links != blank %}
-                                    <ul class="grandchild body-md block space-y-2 mt-4">
-                                        {% for grandchild_link in child_link.links %} 
-                                        <li class="block">
-                                            <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
+                                <ul class="grandchild_default body-md px-4 whitespace-nowrap">
+                                    {% for grandchild_link in child_link.links %} 
+                                    <li class="block py-2">
+                                        <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
                                 {% endif %}
                             </li>
-                            {% endif %}
-                            {% endfor %}
-                            </ul>
-                        </div>
+                        {% endunless %}
+                        {% endfor %}
+                        </ul>
+                    </div>
                 </div>
               {% endif %}
               {% endif %}
             </li>
           {% endfor %}
         </ul>
-
         
-        <div class="navSidebarMenu w-6 h-6 lg:hidden">
-        <a href="#" id="toggleSidebar"><span aria-hidden="true" class="text-2xl icon icon-menu"></span></a>
+        <div class="w-6 h-6 lg:hidden">
+        <a href="#" id="toggleSidebar"><button class="hamburger hamburger--squeeze" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button></a>
         </div>
-      
 
       </nav>
       <div class="flex text-2xl font-semibold justify-center">
@@ -230,7 +230,8 @@
         </div>
       </div>
     </div>
-    
+    {% render 'mobile-navmenu' %}
+
   </div>
   <!-- End of Header -->
 

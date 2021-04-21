@@ -1,3 +1,35 @@
+//Mobile nav ---------------------------
+
+$(function() {
+  $( "#toggleSidebar" ).click(function(){
+    if( $( "#slides" ).is( ":hidden" )){
+      $( "#slides" ).slideDown();
+      $('body').css('overflowY', 'hidden');
+    } else {
+      $( "#slides" ).slideUp();
+      $('body').css('overflowY', 'auto');
+    }
+  });
+
+  
+  $('.navDropdown').on('click', function(){
+    this.dropdownItem = $(this).parent().siblings('.navDropItem');
+
+    this.dropdownItem.slideToggle(300);
+    $(this).toggleClass('rotate');
+    
+  }); 
+  
+});
+
+//Hamburger trigger ---------------------------
+
+$(function(){
+  $('.hamburger').click(function(e){
+    e.preventDefault();
+    $(this).toggleClass('is-active');
+  });
+});
 
 //CartDrawer click events ---------------------------
 
@@ -20,29 +52,6 @@ $(function(){
     });
   });
 
-//Video click events ---------------------------
-
-$(function(){
-$('#videoBtn').click(function(e){
-    e.preventDefault();
-    $('.maskVideo').toggleClass("invisible" ).animate({opacity: "1"}, 300);
-    $('.video').fadeToggle(function(){
-    player.playVideo();
-    });
-    $('body').css('overflowY', 'hidden');
-    
-});
-
-$('.maskVideo').click(function(e){
-    e.preventDefault();
-    $('.video').fadeToggle();
-    $('.maskVideo').animate({opacity: "0"}, 300, function(){
-    $('.maskVideo').toggleClass( "invisible" )
-    });
-    $('body').css('overflowY', 'auto');
-    player.stopVideo();
-});
-});
 
 //Search bar toggle ---------------------------
 // $(function(){
